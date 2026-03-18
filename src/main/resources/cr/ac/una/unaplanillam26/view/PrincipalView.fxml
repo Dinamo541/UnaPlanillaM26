@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.PrincipalController">
+   <left>
+      <VBox prefHeight="538.0" prefWidth="154.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="84.0" prefWidth="102.0">
+               <children>
+                  <ImageView fitHeight="104.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/FondoInicioRojo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/LogoUNArojo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="145.0">
+               <children>
+                  <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/user.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Nombre Usuario" />
+               </children>
+            </HBox>
+            <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnEmpleados" prefHeight="45.0" text="Empleados" />
+            <MFXButton layoutX="15.0" layoutY="15.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnTiposPlanilla" prefHeight="45.0" text="Tipos de planilla" />
+            <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Cerrar Sesión" />
+                  <MFXButton layoutX="10.0" layoutY="336.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Salir" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

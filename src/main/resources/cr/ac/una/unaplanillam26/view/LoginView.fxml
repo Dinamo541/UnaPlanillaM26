@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" prefHeight="404.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.LoginController">
+<AnchorPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.LoginController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,7 +40,7 @@
                               <Image url="@../resource/Usuario-48.png" />
                            </image>
                         </ImageView>
-                        <MFXTextField floatingText="Usuario" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <MFXTextField fx:id="txfUsuario" floatingText="Usuario" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox layoutX="30.0" layoutY="130.0" prefHeight="35.0" prefWidth="499.0" spacing="20.0">
@@ -50,13 +50,13 @@
                               <Image url="@../resource/Contraseña-48.png" />
                            </image>
                         </ImageView>
-                        <MFXPasswordField floatingText="Clave" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <MFXPasswordField fx:id="pswClave" floatingText="Clave" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_CENTER" layoutX="30.0" layoutY="200.0" prefHeight="64.0" prefWidth="499.0" spacing="20.0">
                      <children>
                         <MFXButton fx:id="btnCancelar" buttonType="RAISED" onAction="#onActionBtnCancelar" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #42A6F6;" text="Cancelar" />
-                        <MFXButton buttonType="RAISED" layoutX="194.0" layoutY="10.0" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #42A6F6;" text="Ingresar" />
+                        <MFXButton buttonType="RAISED" layoutX="194.0" layoutY="10.0" onAction="#onActionBtnIngresar" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #42A6F6;" text="Ingresar" />
                      </children>
                   </HBox>
                </children>
