@@ -10,32 +10,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:id="root" prefHeight="548.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.EmpleadosController">
+<VBox fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="478.0" prefWidth="745.0" styleClass="jfx-panel-fondo" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.EmpleadosController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label text="Control de Empleados" />
-            <HBox prefHeight="362.0" prefWidth="761.0">
+            <Label styleClass="jfx-titulo-label" text="Control de Empleados" />
+            <HBox prefHeight="290.0" prefWidth="761.0" styleClass="jfx-contenedor-principal">
                <children>
                   <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <MFXTextField floatingText="Id" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="264.0" VBox.vgrow="ALWAYS" />
-                        <MFXTextField floatingText="Nombre" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="264.0" />
-                        <MFXTextField floatingText="Primer apellido" layoutX="20.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="264.0" />
-                        <MFXTextField floatingText="Segundo apellido" layoutX="20.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="264.0" />
-                        <MFXTextField floatingText="Cédula" layoutX="20.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="264.0" />
+                        <MFXTextField floatMode="BORDER" floatingText="Id" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                        <MFXTextField floatMode="BORDER" floatingText="Nombre" layoutX="20.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField floatMode="BORDER" floatingText="Primer apellido" layoutX="20.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField floatMode="BORDER" floatingText="Segundo apellido" layoutX="20.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField floatMode="BORDER" floatingText="Cédula" layoutX="20.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
                         <HBox prefHeight="44.0" prefWidth="375.0" spacing="10.0">
                            <children>
-                              <MFXRadioButton selected="true" text="Masculino">
+                              <MFXRadioButton selected="true" styleClass="mfx-radio-button" text="Masculino">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="Gender" />
                                  </toggleGroup>
                               </MFXRadioButton>
-                              <MFXRadioButton layoutX="10.0" layoutY="10.0" text="Femenino" toggleGroup="$Gender" />
+                              <MFXRadioButton layoutX="10.0" layoutY="10.0" styleClass="mfx-radio-button" text="Femenino" toggleGroup="$Gender" />
                            </children>
                            <padding>
                               <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -52,21 +52,21 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox prefHeight="23.0" prefWidth="347.0">
+                        <HBox prefHeight="23.0" prefWidth="347.0" spacing="10.0">
                            <children>
                               <MFXCheckbox text="Administrador" />
                               <MFXCheckbox layoutX="10.0" layoutY="10.0" text="Activo" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" minWidth="-Infinity" spacing="10.0" VBox.vgrow="NEVER">
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" spacing="10.0">
                            <children>
-                              <MFXDatePicker floatingText="Fecha ingreso" maxWidth="1.7976931348623157E308" />
-                              <MFXDatePicker floatingText="Fecha ingreso" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="72.0" />
+                              <MFXDatePicker floatMode="BORDER" floatingText="Fecha ingreso" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="93.0" />
+                              <MFXDatePicker floatMode="BORDER" floatingText="Fecha salida" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="58.0" />
                            </children>
                         </HBox>
-                        <MFXTextField />
-                        <MFXTextField />
-                        <MFXPasswordField />
+                        <MFXTextField floatMode="BORDER" floatingText="Correo" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
+                        <MFXTextField floatMode="BORDER" floatingText="Usuario" layoutX="20.0" layoutY="107.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" />
+                        <MFXPasswordField floatMode="BORDER" floatingText="Clave" maxWidth="1.7976931348623157E308" />
                      </children>
                   </VBox>
                </children>
@@ -76,10 +76,25 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <MFXButton buttonType="RAISED" prefHeight="44.0" prefWidth="92.0" text="Nuevo" />
-                  <MFXButton buttonType="RAISED" layoutX="344.0" layoutY="20.0" prefHeight="44.0" prefWidth="92.0" text="Buscar" />
-                  <MFXButton buttonType="RAISED" layoutX="391.0" layoutY="20.0" prefHeight="44.0" prefWidth="92.0" text="Eliminar" />
-                  <MFXButton buttonType="RAISED" layoutX="483.0" layoutY="20.0" prefHeight="44.0" prefWidth="92.0" text="Guardar" />
+                  <MFXButton buttonType="RAISED" prefHeight="40.0" prefWidth="100.0" styleClass="jfx-btn-nuevo" text="Nuevo">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic></MFXButton>
+                  <MFXButton buttonType="RAISED" layoutX="312.0" layoutY="20.0" prefHeight="40.0" prefWidth="100.0" styleClass="jfx-btn-nuevo" text="Buscar">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton buttonType="RAISED" layoutX="372.0" layoutY="20.0" prefHeight="40.0" prefWidth="100.0" styleClass="jfx-btn-nuevo" text="Guardar">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton buttonType="RAISED" layoutX="492.0" layoutY="20.0" prefHeight="40.0" prefWidth="100.0" styleClass="jfx-btn-nuevo" text="Nuevo">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

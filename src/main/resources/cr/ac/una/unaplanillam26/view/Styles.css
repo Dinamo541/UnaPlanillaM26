@@ -1,13 +1,136 @@
-/*
- * Empty Stylesheet file.
- */
-
-.root {
-    -fx-background-image: url("../resource/FondoInicioRojo.png");
-    -fx-background-size: 100% 100%;
-    
+/* =========================
+   VARIABLES GLOBALES
+   ========================= */
+* {
+    -fx-base-color: #09b6bc;
+    -fx-base-color-focus: #09b6bc;
+    -fx-base-color-unfocus: #4d4d4d;
+    -fx-base-color-etiquetas: #4d4d4d;
+    -fx-base-color-texto: #000000;
+    -fx-base-color-titulos: #51b6cd;
+    -fx-base-color-error: #d34336;
+    -fx-base-color-id: #00c853;
+    -mfx-main: -fx-base-color-focus;
+    -mfs-purple: -fx-base-color-focus;
 }
 
-.conteiner {
+.mfx-text-field {
+    -mfx-float-mode: BORDER;
+    -fx-font-size: 14px;
+    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
+    -fx-max-height: 40px;
+    -fx-alignment: TOP_LEFT;
+    -fx-text-fill: -fx-base-color-texto;
+    -fx-prompt-text-fill: -fx-base-color-etiquetas;
+}
+
+.mfx-text-field .text-field {
+    -fx-highlight-fill: -fx-base-color-titulos;
+}
+
+.mfx-button {
+    -mfx-button-type: RAISED;
+    -fx-opacity: 0.8;
+    -fx-content-display: left;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.mfx-button .mxf-ripple-generator {
+    -mxf-ripple-color: white;
+}
+
+.button:hover {
+    -fx-background-color: #ff6d00;
+    -fx-text-fill: white;
+}
+
+.mfx-checkbox {
+    -fx-font-size: 14.0px;
+    -fx-pref-height: 26px;
+    -fx-min-height: 26px;
+    -fx-max-height: 26px;
+    -fx-text-fill: -fx-base-color-etiquetas;
+    -mfx-main: -fx-base-color-focus;
+    -mfx-secondary: -fx-base-color-unfocus;
+}
+
+.mfx-radio-button{
+    -fx-font-size: 14.0px;
+    -fx-pref-height: 26px;
+    -fx-min-height: 26px;
+    -fx-max-height: 26px;
+    -fx-text-fill: -fx-base-color-etiquetas;
+    -mfx-main: -fx-base-color-focus;
+    -mfx-secondary: -fx-base-color-unfocus;
+}
+
+.mfx-date-picker{
+    -fx-font-size: 14.0px;
+    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
+    -fx-max-height: 40px;
+}
+
+.mfx-date-cell:current {
+  -fx-text-fill: -fx-base-color-focus;
+}
+
+.mfx-date-cell:selected {
+  -fx-background-color: -fx-base-color-focus;
+}
+
+.separator {
+    -fx-background-color: -fx-base-color-focus;
+}
+
+/* =========================
+   BOTONES
+   ========================= */
+
+.jfx-btn-nuevo,
+.jfx-btn-nuevo:armed,
+.jfx-btn-nuevo:focused {
+    -fx-background-color: #2196f3;
+}
+
+.jfx-btn-nuevo > ImageView {
+    -fx-image: url("../resource/Agregar-48.png");
+}
+
+/* =========================
+   PANELES
+   ========================= */
+
+.jfx-panel-fondo {
+    -fx-background-color: #2196f3;
+    -fx-opacity: 0.8;
+}
+
+.jfx-panel-fondo > VBox {
     -fx-background-color: white;
+    -fx-border-color: #97a692;
+    -fx-border-width: 10px;
+}
+
+.jfx-contenedor-principal {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-padding: 25 15 15 15;
+    -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.15), 10, 0.7, 0, 1.5);
+}
+
+/* =========================
+   ETIQUETAS
+   ========================= */
+
+.jfx-titulo-label {
+    -fx-font-size: 24px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
 }

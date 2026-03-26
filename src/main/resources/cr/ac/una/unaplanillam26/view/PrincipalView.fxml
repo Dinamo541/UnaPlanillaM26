@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.PrincipalController">
+<BorderPane fx:id="root" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="972.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.PrincipalController">
    <left>
       <VBox prefHeight="538.0" prefWidth="154.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,14 +28,14 @@
                   </ImageView>
                </children>
             </StackPane>
-            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="145.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="145.0" spacing="4.0">
                <children>
                   <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resource/user.png" />
                      </image>
                   </ImageView>
-                  <Label text="Nombre Usuario" />
+                  <Label text="&quot;Nombre Usuario&quot;" />
                </children>
             </HBox>
             <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnEmpleados" prefHeight="45.0" text="Empleados" />
@@ -56,4 +55,23 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
+   <top>
+      <HBox prefHeight="37.0" prefWidth="972.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox prefHeight="38.0" prefWidth="54.0">
+               <children>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/Casa-48.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
 </BorderPane>
