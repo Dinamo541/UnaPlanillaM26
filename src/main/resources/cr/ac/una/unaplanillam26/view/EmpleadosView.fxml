@@ -7,6 +7,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -16,7 +17,7 @@
 
 <VBox fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="478.0" prefWidth="745.0" styleClass="jfx-panel-fondo" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.EmpleadosController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
             <Label styleClass="jfx-titulo-label" text="Control de Empleados" />
             <HBox prefHeight="290.0" prefWidth="761.0" styleClass="jfx-contenedor-principal">
@@ -54,8 +55,14 @@
                      <children>
                         <HBox prefHeight="23.0" prefWidth="347.0" spacing="10.0">
                            <children>
-                              <MFXCheckbox fx:id="chkAdministrador" onAction="#onActionChkAdministrador" text="Administrador" />
-                              <MFXCheckbox fx:id="chkActivo" layoutX="10.0" layoutY="10.0" text="Activo" />
+                              <MFXCheckbox fx:id="chkAdministrador" onAction="#onActionChkAdministrador" text="Administrador">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></MFXCheckbox>
+                              <MFXCheckbox fx:id="chkActivo" layoutX="10.0" layoutY="10.0" text="Activo">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></MFXCheckbox>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="0.0" spacing="10.0">
@@ -76,21 +83,21 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <MFXButton fx:id="btnNuevo" buttonType="RAISED" onAction="#onActionBtnNuevo" prefHeight="40.0" styleClass="jfx-btn-nuevo" text="Nuevo">
+                  <MFXButton id="jfx-btn-nuevo" fx:id="btnNuevo" buttonType="RAISED" onAction="#onActionBtnNuevo" prefHeight="40.0" styleClass="jfx-btn" text="Nuevo">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></MFXButton>
-                  <MFXButton buttonType="RAISED" layoutX="312.0" layoutY="20.0" prefHeight="40.0" styleClass="jfx-btn-nuevo" text="Buscar">
+                  <MFXButton id="jfx-btn-buscar" fx:id="btnBuscar" buttonType="RAISED" layoutX="312.0" layoutY="20.0" onAction="#onActionBtnBuscar" prefHeight="40.0" styleClass="jfx-btn" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton fx:id="btnGuardar" buttonType="RAISED" layoutX="372.0" layoutY="20.0" onAction="#onActionBtnGuardar" prefHeight="40.0" styleClass="jfx-btn-nuevo" text="Guardar">
+                  <MFXButton id="jfx-btn-eliminar" fx:id="btnEliminar" buttonType="RAISED" layoutX="492.0" layoutY="20.0" onAction="#onActionBtnEliminar" prefHeight="40.0" styleClass="jfx-btn" text="Eliminar">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </MFXButton>
-                  <MFXButton buttonType="RAISED" layoutX="492.0" layoutY="20.0" prefHeight="40.0" styleClass="jfx-btn-nuevo" text="Nuevo">
+                  <MFXButton id="jfx-btn-guardar" fx:id="btnGuardar" buttonType="RAISED" layoutX="372.0" layoutY="20.0" onAction="#onActionBtnGuardar" prefHeight="40.0" styleClass="jfx-btn" text="Guardar">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>

@@ -38,12 +38,12 @@
                   <Label text="&quot;Nombre Usuario&quot;" />
                </children>
             </HBox>
-            <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnEmpleados" prefHeight="45.0" text="Empleados" />
-            <MFXButton layoutX="15.0" layoutY="15.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnTiposPlanilla" prefHeight="45.0" text="Tipos de planilla" />
+            <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnEmpleados" prefHeight="45.0" styleClass="jfx-btn" text="Empleados" />
+            <MFXButton layoutX="15.0" layoutY="15.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnTiposPlanilla" prefHeight="45.0" styleClass="jfx-btn" text="Tipos de planilla" />
             <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <MFXButton maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Cerrar Sesión" />
-                  <MFXButton layoutX="10.0" layoutY="336.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Salir" />
+                  <MFXButton id="jfx-btn-guardar" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Cerrar Sesión" />
+                  <MFXButton id="jfx-btn-guardar" layoutX="10.0" layoutY="336.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnSalir" prefHeight="45.0" text="Salir" />
                </children>
             </VBox>
          </children>

@@ -58,7 +58,7 @@
     -mfx-secondary: -fx-base-color-unfocus;
 }
 
-.mfx-radio-button{
+.mfx-radio-button {
     -fx-font-size: 14.0px;
     -fx-pref-height: 26px;
     -fx-min-height: 26px;
@@ -68,7 +68,7 @@
     -mfx-secondary: -fx-base-color-unfocus;
 }
 
-.mfx-date-picker{
+.mfx-date-picker {
     -fx-font-size: 14.0px;
     -fx-pref-height: 40px;
     -fx-min-height: 40px;
@@ -76,11 +76,11 @@
 }
 
 .mfx-date-cell:current {
-  -fx-text-fill: -fx-base-color-focus;
+    -fx-text-fill: -fx-base-color-focus;
 }
 
 .mfx-date-cell:selected {
-  -fx-background-color: -fx-base-color-focus;
+    -fx-background-color: -fx-base-color-focus;
 }
 
 .separator {
@@ -91,14 +91,15 @@
    BOTONES
    ========================= */
 
-.jfx-btn-nuevo,
-.jfx-btn-nuevo:armed,
-.jfx-btn-nuevo:focused {
+.jfx-btn,
+.jfx-btn:armed,
+.jfx-btn:focused {
     -fx-background-color: #2196f3;
 }
 
-.jfx-btn-nuevo > ImageView {
-    -fx-image: url("../resource/Agregar-48.png");
+.jfx-btn:hover {
+    -fx-background-color: #ff6d00;
+    -fx-text-fill: white;
 }
 
 /* =========================
@@ -110,7 +111,7 @@
     -fx-opacity: 0.8;
 }
 
-.jfx-panel-fondo > VBox {
+.jfx-panel-fondo>VBox {
     -fx-background-color: white;
     -fx-border-color: #97a692;
     -fx-border-width: 10px;
@@ -133,4 +134,56 @@
     -fx-text-fill: -fx-base-color-titulos;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
+
+/* =========================
+   ESPECIFICOS
+   ========================= */
+
+#jfx-btn-nuevo {
+    -fx-background-color: #2196f3;
+}
+
+#jfx-btn-nuevo:hover {
+    -fx-background-color: #ff6d00;
+}
+
+#jfx-btn-nuevo>ImageView {
+    -fx-image: url("../resource/Agregar-48.png");
+}
+
+#jfx-btn-buscar {
+    -fx-background-color: -fx-base-color;
+}
+
+#jfx-btn-buscar:hover {
+    -fx-background-color: #ff6d00;
+}
+
+#jfx-btn-buscar>ImageView {
+    -fx-image: url("../resource/Buscar-48.png");
+}
+
+#jfx-btn-eliminar {
+    -fx-background-color: -fx-base-color-error;
+}
+
+#jfx-btn-eliminar:hover {
+    -fx-background-color: #ff6d00;
+}
+
+#jfx-btn-eliminar>ImageView {
+    -fx-image: url("../resource/Eliminar-48.png");
+}
+
+#jfx-btn-guardar {
+    -fx-background-color: -fx-base-color-id;
+}
+
+#jfx-btn-guardar:hover {
+    -fx-background-color: #ff6d00;
+}
+
+#jfx-btn-guardar>ImageView {
+    -fx-image: url("../resource/Guardar-48.png");
 }
