@@ -43,6 +43,9 @@ public class EmpleadoDto {
         this.fechaSalida = new SimpleObjectProperty();
         this.activo = new SimpleBooleanProperty(true);
         this.administrator = new SimpleBooleanProperty(false);
+        
+        // BORRAR
+        this.nombre.set("Mariano");
     }
     
     
