@@ -6,6 +6,10 @@
   UNA Planilla 2026 Repositorio 
 </h1>
 
+## Autor y direccion academica
+
+Este proyecto fue desarrollado y es impartido academicamente por el Master Carlos Carranza Blanco.
+
 ## Descripcion
 
 UNA Planilla 2026 es una aplicacion de escritorio desarrollada en Java con JavaFX, enfocada en la gestion basica de procesos de planilla. El proyecto organiza su logica por capas (controladores, modelos y utilidades) para separar la interfaz grafica del manejo de datos y del flujo de navegacion entre pantallas.
