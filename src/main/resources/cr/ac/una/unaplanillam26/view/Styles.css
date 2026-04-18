@@ -214,7 +214,7 @@
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-width: 0;
-    -fx-effect: dropshadow(gaussian, -fx-color-primary-700, 3, 0.3, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(9, 139, 190, 0.35), 3, 0.3, 0, 0);
 }
 
 .column-header {
