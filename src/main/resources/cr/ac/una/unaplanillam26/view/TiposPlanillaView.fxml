@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="cr.ac.una.unaplanillam26.controller.TiposPlanillaController">
+<VBox fx:id="raiz" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="478.0" prefWidth="745.0" styleClass="jfx-panel-fondo" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.TiposPlanillaController">
    <children>
-      <Label layoutX="256.0" layoutY="191.0" text="Tipos De Planilla" />
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label styleClass="jfx-titulo-label" text="Control de Tipos de Planilla" />
+            <VBox prefHeight="238.0" prefWidth="550.0" spacing="10.0" styleClass="jfx-contenedor-principal">
+               <children>
+                  <MFXTextField fx:id="txtId" floatMode="BORDER" floatingText="Id" onKeyPressed="#onKeyPressedTxtId" />
+                  <MFXTextField fx:id="txtNombre" floatMode="BORDER" floatingText="Nombre" />
+                  <MFXTextField fx:id="txtDescripcion" floatMode="BORDER" floatingText="Descripción" />
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <MFXCheckbox fx:id="chkActivo" text="Activo" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <MFXButton id="jfx-btn-nuevo" fx:id="btnNuevo" buttonType="RAISED" onAction="#onActionBtnNuevo" prefHeight="40.0" styleClass="jfx-btn" text="Nuevo" />
+                  <MFXButton id="jfx-btn-buscar" fx:id="btnBuscar" buttonType="RAISED" onAction="#onActionBtnBuscar" prefHeight="40.0" styleClass="jfx-btn" text="Buscar" />
+                  <MFXButton id="jfx-btn-eliminar" fx:id="btnEliminar" buttonType="RAISED" onAction="#onActionBtnEliminar" prefHeight="40.0" styleClass="jfx-btn" text="Eliminar" />
+                  <MFXButton id="jfx-btn-guardar" fx:id="btnGuardar" buttonType="RAISED" onAction="#onActionBtnGuardar" prefHeight="40.0" styleClass="jfx-btn" text="Guardar" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+         </padding>
+      </VBox>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
