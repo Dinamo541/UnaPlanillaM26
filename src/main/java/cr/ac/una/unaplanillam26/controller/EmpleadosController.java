@@ -168,6 +168,9 @@ public class EmpleadosController extends Controller implements Initializable {
         if (chkAdministrador.isSelected()) {
             this.requeridos.addAll(Arrays.asList(txtUsuario, txtClave));
 
+            txtUsuario.clear();
+            txtClave.clear();
+
             txtUsuario.setDisable(false);
             txtClave.setDisable(false);
         } else {

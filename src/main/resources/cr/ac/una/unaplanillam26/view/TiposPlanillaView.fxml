@@ -1,11 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="cr.ac.una.unaplanillam26.controller.TiposPlanillaController">
+<VBox fx:id="root" prefHeight="537.0" prefWidth="841.0" styleClass="jfx-panel-fondo-tipos" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.TiposPlanillaController">
    <children>
-      <Label layoutX="256.0" layoutY="191.0" text="Tipos De Planilla" />
+      <BorderPane styleClass="jfx-fondo-translusido" VBox.vgrow="ALWAYS">
+         <center>
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox fx:id="vbTiposPlanilla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" spacing="20.0" styleClass="jfx-contenedor-tipos" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <MFXTextField fx:id="txtId" floatingText="Id" maxWidth="1.7976931348623157E308" promptText="Id" HBox.hgrow="ALWAYS" />
+                              <MFXTextField fx:id="txtCodigo" floatingText="Codigo" maxWidth="1.7976931348623157E308" promptText="Codigo" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="26.0" layoutY="36.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <MFXTextField fx:id="txtDescripcion" floatingText="Descripcion" maxWidth="1.7976931348623157E308" promptText="Descripción" HBox.hgrow="ALWAYS" />
+                              <MFXTextField fx:id="txtPlanillaXMes" floatingText="Planilla x Mes" maxWidth="1.7976931348623157E308" promptText="Planillas x Mes" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="26.0" layoutY="135.0" prefWidth="200.0" spacing="20.0">
+                           <padding>
+                              <Insets bottom="10.0" top="2.0" />
+                           </padding>
+                           <children>
+                              <MFXCheckbox fx:id="chkActivo" selected="true" text="Activo" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vbInclusionEmpleados" layoutX="20.0" layoutY="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" spacing="5.0" styleClass="jfx-contenedor-tipos" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label styleClass="jfx-titulo-tabla" text="Lista Empleados" />
+                                          <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button id="jfx-btn-nuevo" fx:id="btnAgregarEmpleado" mnemonicParsing="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <MFXTextField floatingText="Id Empleados" maxWidth="1.7976931348623157E308" promptText="1234" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <MFXTextField floatingText="Nombre" maxWidth="1.7976931348623157E308" promptText="Nombre del Empleado" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TableView fx:id="tbListaEmpleados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="colId" prefWidth="60.7999267578125" text="Id" />
+                                        <TableColumn fx:id="colName" prefWidth="219.199951171875" text="Nombre" />
+                                          <TableColumn fx:id="colEliminar" prefWidth="67.199951171875" text="Eliminar" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </center>
+         <left>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="460.0" prefWidth="133.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXButton id="jfx-btn-nuevo" fx:id="btnTiposPlanilla" alignment="CENTER" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#onActionBtnTiposPlanilla" prefHeight="40.0" styleClass="jfx-btn" text="Tipos Planilla" />
+                        <MFXButton id="jfx-btn-nuevo" fx:id="btnInclusionEmpleados" alignment="CENTER" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" onAction="#onActionBtnInclusionEmpleados" prefHeight="40.0" styleClass="jfx-btn" text="Empleados" />
+                     </children>
+                  </VBox>
+                  <MFXButton id="jfx-btn-nuevo" fx:id="btnNuevo" alignment="CENTER" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#onActionBtnNuevo" prefHeight="40.0" styleClass="jfx-btn" text="Nuevo">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton id="jfx-btn-buscar" fx:id="btnBuscar" alignment="CENTER" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#onActionBtnBuscar" prefHeight="40.0" styleClass="jfx-btn" text="Buscar">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton id="jfx-btn-eliminar" fx:id="btnEliminar" alignment="CENTER" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#onActionBtnEliminar" prefHeight="40.0" styleClass="jfx-btn" text="Eliminar">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton id="jfx-btn-guardar" fx:id="btnGuardar" alignment="CENTER" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#onActionBtnGuardar" prefHeight="40.0" styleClass="jfx-btn" text="Guardar">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </left>
+         <top>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Control Tipos Planilla">
+                     <styleClass>
+                        <String fx:value="jfx-titulo-tipos" />
+                        <String fx:value="jfx-fondo-translusido" />
+                     </styleClass>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>

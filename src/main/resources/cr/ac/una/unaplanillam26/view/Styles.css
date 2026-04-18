@@ -106,6 +106,40 @@
    PANELES
    ========================= */
 
+.jfx-panel-fondo-tipos {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%,
+            -fx-base-color 0%,
+            #2196f3 100%);
+    -fx-opacity: 0.8;
+}
+
+.jfx-fondo-translusido,
+.jfx-fondo-translusido:armed,
+.jfx-fondo-translusido:focused {
+    -fx-background-color:
+        #FFFFFF52,
+        #FFFFFF2E;
+
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 10, 10;
+
+    -fx-border-color: #FFFFFF66;
+    -fx-border-radius: 10px;
+
+    -fx-effect: dropshadow(gaussian, #00000026, 25, 0.2, 0, 8);
+}
+
+.jfx-contenedor-tipos {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+
+    -fx-border-color: #97a692;
+    -fx-border-radius: 10px;
+
+    -fx-padding: 25 15 15 15;
+    -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.15), 20, 0.7, 0, 1.5);
+}
+
 .jfx-panel-fondo {
     -fx-background-color: #2196f3;
     -fx-opacity: 0.8;
@@ -134,6 +168,62 @@
     -fx-text-fill: -fx-base-color-titulos;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
+
+.jfx-titulo-tipos {
+    -fx-font-size: 28px;
+    -fx-padding: 1 5 1 5;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold;
+
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
+            #d37436 0%,
+            #d34336 50%,
+            #d3366e 100%);
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
+
+.jfx-titulo-tabla {
+    -fx-font-size: 14px;
+    -fx-padding: 1 5 1 5;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold;
+
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
+            #09b6bc 0%,
+            #098bbe 50%,
+            #095e8a 100%);
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+
+}
+
+/* =========================
+   TABLA
+   ========================= */
+
+.table-view,
+.table-view:armed,
+.table-view:focused {
+    -fx-table-cell-border-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-color: #eaeaea;
+    -fx-border-color: linear-gradient(from 0% 0% to 100% 0%,
+            #d4eeef 0%,
+            #b2e1e3 100%);
+    -fx-focus-color: transparent;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, -fx-color-primary-700, 3, 0.3, 0, 0);
+}
+
+.column-header {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 16 16 0 0;
+    -fx-border-radius: 16 16 0 0;
+    -fx-border-width: 0 0 0.7 0;
+    -fx-padding: 0 0 0 10;
 }
 
 /* =========================
