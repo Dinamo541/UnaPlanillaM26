@@ -1,5 +1,14 @@
 package cr.ac.una.unaplanillam26.controller;
 
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import cr.ac.una.unaplanillam26.model.EmpleadoDto;
 import cr.ac.una.unaplanillam26.util.BindingUtils;
 import cr.ac.una.unaplanillam26.util.Formato;
@@ -11,14 +20,6 @@ import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -81,8 +82,8 @@ public class EmpleadosController extends Controller implements Initializable {
     private MFXCheckbox chkActivo;
 
     private EmpleadoDto empleado;
-    private ObjectProperty<EmpleadoDto> empleadoProperty = new SimpleObjectProperty<>();
-    private List<Node> requeridos = new ArrayList();
+    private final ObjectProperty<EmpleadoDto> empleadoProperty = new SimpleObjectProperty<>();
+    private final List<Node> requeridos = new ArrayList<>();
 
     /**
      * Initializes the controller class.
@@ -96,7 +97,6 @@ public class EmpleadosController extends Controller implements Initializable {
         txtPApellido.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
         txtSApellido.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
         txtCedula.delegateSetTextFormatter(Formato.getInstance().cedulaFormat(40));
-        txtCedula.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(80));
         txtUsuario.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
         txtClave.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(8));
         empleado = new EmpleadoDto();

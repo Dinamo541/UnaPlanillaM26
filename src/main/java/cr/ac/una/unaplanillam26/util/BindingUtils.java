@@ -1,8 +1,10 @@
 package cr.ac.una.unaplanillam26.util;
 
+import java.util.Map;
+import java.util.WeakHashMap;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
@@ -12,8 +14,7 @@ import javafx.scene.control.ToggleGroup;
  */
 public final class BindingUtils {
 
-    static ChangeListener<Toggle> changeListener = (ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
-    };
+    private static final Map<ToggleGroup, ChangeListener<Toggle>> GROUP_LISTENERS = new WeakHashMap<>();
 
     private BindingUtils() {
     }
@@ -32,14 +33,27 @@ public final class BindingUtils {
                 break;
             }
         }
+        // Ensure each ToggleGroup keeps exactly one listener instance.
+        unbindToggleGroupToProperty(toggleGroup, property);
+
         // Update property value on toggle selection changes
-        changeListener = (ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
-            property.setValue((T) newValue.getUserData());
+        ChangeListener<Toggle> listener = (observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                property.setValue(null);
+                return;
+            }
+            @SuppressWarnings("unchecked")
+            T value = (T) newValue.getUserData();
+            property.setValue(value);
         };
-        toggleGroup.selectedToggleProperty().addListener(changeListener);
+        toggleGroup.selectedToggleProperty().addListener(listener);
+        GROUP_LISTENERS.put(toggleGroup, listener);
     }
 
     public static <T> void unbindToggleGroupToProperty(final ToggleGroup toggleGroup, final ObjectProperty<T> property) {
-        toggleGroup.selectedToggleProperty().removeListener(changeListener);
+        ChangeListener<Toggle> listener = GROUP_LISTENERS.remove(toggleGroup);
+        if (listener != null) {
+            toggleGroup.selectedToggleProperty().removeListener(listener);
+        }
     }
 }

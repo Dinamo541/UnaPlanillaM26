@@ -10,6 +10,7 @@
     -fx-base-color-titulos: #51b6cd;
     -fx-base-color-error: #d34336;
     -fx-base-color-id: #00c853;
+    -fx-color-primary-700: #095e8a;
     -mfx-main: -fx-base-color-focus;
     -mfs-purple: -fx-base-color-focus;
 }

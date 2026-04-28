@@ -2,6 +2,7 @@ package cr.ac.una.unaplanillam26.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -35,17 +36,14 @@ public class EmpleadoDto {
         this.primerApellido = new SimpleStringProperty("");
         this.segundoApellido = new SimpleStringProperty("");
         this.cedula = new SimpleStringProperty("");
-        this.genero = new SimpleObjectProperty("M");
+        this.genero = new SimpleObjectProperty<>("M");
         this.correo = new SimpleStringProperty("");
         this.usuario = new SimpleStringProperty("");
         this.clave = new SimpleStringProperty("");
-        this.fechaIngreso = new SimpleObjectProperty(LocalDate.now());
-        this.fechaSalida = new SimpleObjectProperty();
+        this.fechaIngreso = new SimpleObjectProperty<>(LocalDate.now());
+        this.fechaSalida = new SimpleObjectProperty<>();
         this.activo = new SimpleBooleanProperty(true);
         this.administrator = new SimpleBooleanProperty(false);
-        
-        // BORRAR
-        this.nombre.set("Mariano");
     }
     
     
@@ -58,7 +56,7 @@ public class EmpleadoDto {
     }
 
     public void setId(Long id) {
-        this.id.set(id.toString());
+        this.id.set(id == null ? "" : id.toString());
     }
 
     public String getNombre() {
@@ -156,10 +154,6 @@ public class EmpleadoDto {
     public void setActivo(Boolean activo) {
         this.activo.set(activo);
     } 
-
-    private BooleanProperty SimpleBooleanProperty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public StringProperty getIdProperty() {
         return id;
