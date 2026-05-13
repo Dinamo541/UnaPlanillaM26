@@ -27,8 +27,9 @@ public class EmpleadoDto {
     private StringProperty clave;
     private ObjectProperty<LocalDate> fechaIngreso;
     private ObjectProperty<LocalDate> fechaSalida;
-    private BooleanProperty activo;
     private BooleanProperty administrator;
+    private BooleanProperty activo;
+    private Long version;
 
     public EmpleadoDto() {
         this.id = new SimpleStringProperty("");
@@ -45,9 +46,25 @@ public class EmpleadoDto {
         this.activo = new SimpleBooleanProperty(true);
         this.administrator = new SimpleBooleanProperty(false);
     }
-    
-    
-    
+
+    public EmpleadoDto(Empleado empleado) {
+        this();
+        this.id.set(empleado.getId().toString());
+        this.nombre.set(empleado.getNombre());
+        this.primerApellido.set(empleado.getPrimerApellido());
+        this.segundoApellido.set(empleado.getSegundoApellido());
+        this.cedula.set(empleado.getCedula());
+        this.genero.set(empleado.getGenero());
+        this.correo.set(empleado.getCorreo());
+        this.usuario.set(empleado.getUsuario());
+        this.clave.set(empleado.getClave());
+        this.fechaIngreso.set(empleado.getFechaIngreso());
+        this.fechaSalida.set(empleado.getFechaSalida());
+        this.administrator.set(empleado.getAdministrador().equals("S"));
+        this.activo.set(empleado.getEstado().equals("A"));
+        this.version = empleado.getVersion();
+    }
+
     public Long getId() {
         if (this.id.get() != null && !this.id.get().isBlank()) {
             return Long.valueOf(this.id.get());
@@ -205,6 +222,14 @@ public class EmpleadoDto {
 
     public BooleanProperty getAdministratorProperty() {
         return administrator;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override

@@ -10,9 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import cr.ac.una.unaplanillam26.model.EmpleadoDto;
+import cr.ac.una.unaplanillam26.service.EmpleadoService;
 import cr.ac.una.unaplanillam26.util.BindingUtils;
 import cr.ac.una.unaplanillam26.util.Formato;
 import cr.ac.una.unaplanillam26.util.Mensaje;
+import cr.ac.una.unaplanillam26.util.Respuesta;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXCheckbox;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -167,18 +169,10 @@ public class EmpleadosController extends Controller implements Initializable {
     private void validarAdministrador() {
         if (chkAdministrador.isSelected()) {
             this.requeridos.addAll(Arrays.asList(txtUsuario, txtClave));
-
-            txtUsuario.clear();
-            txtClave.clear();
-
             txtUsuario.setDisable(false);
             txtClave.setDisable(false);
         } else {
             this.requeridos.removeAll(Arrays.asList(txtUsuario, txtClave));
-
-            txtUsuario.clear();
-            txtClave.clear();
-
             txtUsuario.setDisable(true);
             txtClave.setDisable(true);
         }
@@ -240,7 +234,7 @@ public class EmpleadosController extends Controller implements Initializable {
     @FXML
     private void onActionBtnNuevo(ActionEvent event) {
         if (new Mensaje().showConfirmation("Limpiar Empleado", getStage(),
-                "¿Esta seguro que desea limpiar el registro?")) {
+            "¿Está seguro de que desea limpiar el registro?")) {
             cargarValoresDefecto();
         }
     }
@@ -253,10 +247,18 @@ public class EmpleadosController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.WARNING, "Guardar Empleado",
                         getStage(), invalidos);
             } else {
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado",
-                        getStage(), "El empleado se guardó correctamente.");
+                EmpleadoService empleadoService = new EmpleadoService(); 
+                Respuesta respuesta = empleadoService.guardarEmpleado(this.empleado);
+                if (respuesta.getEstado()) {
+                    this.empleado = (EmpleadoDto) respuesta.getResultado("Empleado");
+                    this.empleadoProperty.set(this.empleado);
+                    validarAdministrador();
+                    validarRequeridos();
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), "El empleado se guardor correctamente.");
+                } else {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Empleado", getStage(), respuesta.getMensaje());
+                }
             }
-
         } catch (Exception ex) {
             Logger.getLogger(EmpleadosController.class.getName())
                     .log(Level.SEVERE, "Error guardando el empleado", ex);
@@ -272,7 +274,15 @@ public class EmpleadosController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.WARNING, "Eliminar Empleado",
                         getStage(), "Favor consultar el empleado a eliminar.");
             } else {
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado",
+                EmpleadoService empleadoService = new EmpleadoService(); 
+                Respuesta respuesta = empleadoService.eliminarEmpleado(this.empleado.getId());
+                if (respuesta.getEstado()) {
+                    cargarValoresDefecto();
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar Empleado", getStage(), "El empleado se elimino correctamente.");
+                } else {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Empleado", getStage(), respuesta.getMensaje());
+                }
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar Empleado",
                         getStage(), "El empleado se eliminó correctamente.");
             }
 
@@ -294,8 +304,16 @@ public class EmpleadosController extends Controller implements Initializable {
 
     private void cargarEmpleado(Long id) {
         try {
-            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Consultar Empleado",
-                    getStage(), "El empleado se consultó correctamente.");
+            EmpleadoService empleadoService = new EmpleadoService(); 
+            Respuesta respuesta = empleadoService.getEmpleado(id);
+            if (respuesta.getEstado()) {
+                this.empleado = (EmpleadoDto) respuesta.getResultado("Empleado");
+                this.empleadoProperty.set(this.empleado);
+                validarAdministrador();
+                validarRequeridos();
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Buscar Empleado", getStage(), respuesta.getMensaje());
+            }
         } catch (Exception ex) {
             Logger.getLogger(EmpleadosController.class.getName())
                     .log(Level.SEVERE, "Error consultando el empleado", ex);

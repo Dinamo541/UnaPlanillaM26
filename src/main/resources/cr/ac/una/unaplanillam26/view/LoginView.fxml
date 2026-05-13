@@ -15,7 +15,7 @@
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="imvFondo" fitHeight="404.0" fitWidth="579.0" pickOnBounds="true">
+            <ImageView fx:id="imvFondo" fitHeight="404.0" fitWidth="579.0" pickOnBounds="true" mouseTransparent="true">
                <image>
                   <Image url="@../resource/FondoInicioRojo.png" />
                </image>

@@ -1,12 +1,5 @@
 package cr.ac.una.unaplanillam26.controller;
 
-import cr.ac.una.unaplanillam26.model.EmpleadoDto;
-import cr.ac.una.unaplanillam26.model.TiposPlanillaDto;
-import cr.ac.una.unaplanillam26.util.Formato;
-import cr.ac.una.unaplanillam26.util.Mensaje;
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXCheckbox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +10,14 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import cr.ac.una.unaplanillam26.model.EmpleadoDto;
+import cr.ac.una.unaplanillam26.model.TiposPlanillaDto;
+import cr.ac.una.unaplanillam26.util.Formato;
+import cr.ac.una.unaplanillam26.util.Mensaje;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXCheckbox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -356,7 +357,7 @@ public class TiposPlanillaController extends Controller implements Initializable
     @FXML
     private void onActionBtnNuevo(ActionEvent event) {
         if (new Mensaje().showConfirmation("Limpiar Tipo Planilla", getStage(),
-                "¿Esta seguro que desea limpiar el registro?")) {
+            "¿Está seguro de que desea limpiar el registro?")) {
             cargarValoresDefecto();
         }
     }
