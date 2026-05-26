@@ -38,7 +38,7 @@ public class EmpleadoService {
             return new Respuesta(false, "Error obteniendo el empleado.", "getEmpleado " + ex.getMessage());
         }
     }
-    
+
     public Respuesta guardarEmpleado(EmpleadoDto empleadoDto) {
         try {
             et = em.getTransaction();
@@ -63,7 +63,7 @@ public class EmpleadoService {
             return new Respuesta(false, "Error guardando el empleado.", "guardarEmpleado " + ex.getMessage());
         }
     }
-    
+
     public Respuesta eliminarEmpleado(Long id) {
         try {
             et = em.getTransaction();

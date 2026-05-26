@@ -15,12 +15,13 @@ import javafx.collections.ObservableList;
 public class TiposPlanillaDto {
 
     // Variables
-    private final StringProperty id;
-    private final StringProperty codigo;
-    private final StringProperty descripcion;
-    private final StringProperty planillasXMes;
-    private final BooleanProperty activo;
-    private final ObservableList<EmpleadoDto> empleados;
+    private StringProperty id;
+    private StringProperty codigo;
+    private StringProperty descripcion;
+    private StringProperty planillasXMes;
+    private BooleanProperty activo;
+    private ObservableList<EmpleadoDto> empleados;
+    private Long version;
 
     // Declaraciones
     public TiposPlanillaDto() {
@@ -30,6 +31,16 @@ public class TiposPlanillaDto {
         this.planillasXMes = new SimpleStringProperty("");
         this.activo = new SimpleBooleanProperty(true);
         this.empleados = FXCollections.observableArrayList();
+    }
+
+    public TiposPlanillaDto(TipoPlanilla tipoPlanilla) {
+        this.id = new SimpleStringProperty(tipoPlanilla.getId().toString());
+        this.codigo = new SimpleStringProperty(tipoPlanilla.getCodigo());
+        this.descripcion = new SimpleStringProperty(tipoPlanilla.getDescripcion());
+        this.planillasXMes = new SimpleStringProperty(tipoPlanilla.getPlaxmes().toString());
+        this.activo = new SimpleBooleanProperty(tipoPlanilla.getEstado().equals("A"));
+        this.empleados = FXCollections.observableArrayList();
+        this.version = tipoPlanilla.getVersion();
     }
 
     // Funciones extra
@@ -60,8 +71,16 @@ public class TiposPlanillaDto {
         return descripcion.get();
     }
 
-    public String getPlanillasXMes() {
-        return planillasXMes.get();
+    public Integer getPlanillasXMes() {
+        try {
+            String val = planillasXMes.get();
+            if (val == null || val.isBlank()) {
+                return null;
+            }
+            return Integer.valueOf(val);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     public Boolean getActivo() {
@@ -88,6 +107,10 @@ public class TiposPlanillaDto {
         return activo;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
     // Setters
     public void setId(Long id) {
         if (id == null) {
@@ -105,11 +128,28 @@ public class TiposPlanillaDto {
         this.descripcion.set(descripcion);
     }
 
+    public void setPlanillasXMes(Integer planillasXMes) {
+        if (planillasXMes == null) {
+            this.planillasXMes.set("");
+        } else {
+            this.planillasXMes.set(planillasXMes.toString());
+        }
+    }
+
     public void setPlanillasXMes(String planillasXMes) {
-        this.planillasXMes.set(planillasXMes);
+        if (planillasXMes == null) {
+            this.planillasXMes.set("");
+        } else {
+            this.planillasXMes.set(planillasXMes);
+        }
     }
 
     public void setActivo(Boolean activo) {
         this.activo.set(activo);
     }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
 }
