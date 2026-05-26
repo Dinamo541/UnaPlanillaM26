@@ -22,7 +22,7 @@ import java.util.List;
  * @author Dominique
  */
 @Entity
-@Table(name = "PLAM_TIPOPLANILLAS")
+@Table(name = "PLAM_TIPOPLANILLAS", schema = "una")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoPlanilla.findAll", query = "SELECT t FROM TipoPlanilla t"),
