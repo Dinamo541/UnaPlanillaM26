@@ -117,6 +117,13 @@
    PANELES
    ========================= */
 
+.jfx-top-card {
+    -fx-background-color: white;
+
+    -fx-border-color: #000000;
+    -fx-border-width: 0 0 0.4 0;
+}
+
 .jfx-panel-fondo-tipos {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 0%,
             -fx-base-color 0%,
@@ -170,8 +177,8 @@
 }
 
 /* =========================
-   ETIQUETAS
-   ========================= */
+ETIQUETAS
+========================= */
 
 .jfx-titulo-label {
     -fx-font-size: 24px;
@@ -181,16 +188,25 @@
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
 }
 
+.jfx-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
+            #d3366e 0%,
+            #d34336 50%,
+            #d37436 100%);
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
 .jfx-titulo-tipos {
     -fx-font-size: 28px;
     -fx-padding: 1 5 1 5;
     -fx-text-fill: -fx-base-color-titulos;
     -fx-font-weight: bold;
-
+    
     -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
-            #d37436 0%,
-            #d34336 50%,
-            #d3366e 100%);
+    #d37436 0%,
+    #d34336 50%,
+    #d3366e 100%);
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
 }
 
@@ -199,13 +215,20 @@
     -fx-padding: 1 5 1 5;
     -fx-text-fill: -fx-base-color-titulos;
     -fx-font-weight: bold;
-
+    
     -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
-            #09b6bc 0%,
-            #098bbe 50%,
-            #095e8a 100%);
+    #09b6bc 0%,
+    #098bbe 50%,
+    #095e8a 100%);
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
 
+.jfx-user-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-base-color-etiquetas;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.254), 2, 0, 1, 1);
 }
 
 /* =========================

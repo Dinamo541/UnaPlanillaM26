@@ -6,24 +6,24 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
 /**
- * FXML Controller class
- *
  * @author Dominique
  */
 public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private BorderPane root;
+    @FXML
+    private Label lblUserNombre;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @Override
@@ -43,5 +43,9 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
         FlowController.getInstance().salir();
+    }
+
+    @FXML
+    private void onActionBtnCerrarSesion(ActionEvent event) {
     }
 }

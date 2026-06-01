@@ -32,6 +32,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
@@ -92,6 +94,8 @@ public class EmpleadosController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        VBox.setVgrow(root, Priority.ALWAYS);
+        HBox.setHgrow(root, Priority.ALWAYS);
         rbFemenino.setUserData("F");
         rbMasculino.setUserData("M");
         txtId.delegateSetTextFormatter(Formato.getInstance().integerFormat());

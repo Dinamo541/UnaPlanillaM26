@@ -37,6 +37,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
@@ -196,6 +198,8 @@ public class TiposPlanillaController extends Controller implements Initializable
 
     // ---------------- Métodos Privados ----------------
     private void prepararVista() {
+        VBox.setVgrow(root, Priority.ALWAYS);
+        HBox.setHgrow(root, Priority.ALWAYS);
         vbInclusionEmpleados.setVisible(false);
         vbInclusionEmpleados.setManaged(false);
         vbTiposPlanilla.setVisible(true);
@@ -421,7 +425,6 @@ public class TiposPlanillaController extends Controller implements Initializable
         }
     }
 
-    @FXML
     private void onActionBtnAgregarEmpleado(ActionEvent event) {
         if (this.empleadoDto.getId() == null || this.empleadoDto.getNombre().isBlank()) {
             new Mensaje().showModal(Alert.AlertType.WARNING, "Agregar Empleado", getStage(), "");
