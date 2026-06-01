@@ -4,7 +4,14 @@ import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.List;
 import java.util.regex.Pattern;
+
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.Node;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputControl;
 
@@ -160,4 +167,5 @@ public class Formato {
         });
         return maxLengthFormat;
     }
+
 }

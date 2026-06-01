@@ -18,15 +18,6 @@ public class EntityManagerHelper {
     private static final EntityManagerHelper SINGLENTON = new EntityManagerHelper();
     private static EntityManagerFactory emf;
     private static EntityManager em;
-
-    static {
-        try {
-            emf = Persistence.createEntityManagerFactory("UnaPlanillaPU");
-            em = emf.createEntityManager();
-        } catch (ExceptionInInitializerError e) {
-            throw e;
-        }
-    }
     
     public static EntityManagerHelper getInstance() {
 
@@ -35,8 +26,16 @@ public class EntityManagerHelper {
 
     public static EntityManager getManager() {
         if (em == null) {
-            emf = Persistence.createEntityManagerFactory("UnaPlanillaPU");
-            em = emf.createEntityManager();
+            try {
+                if (emf == null) {
+                    emf = Persistence.createEntityManagerFactory("UnaPlanillaPU");
+                }
+                em = emf.createEntityManager();
+            } catch (Exception ex) {
+                em = null;
+                java.util.logging.Logger.getLogger(EntityManagerHelper.class.getName())
+                        .log(java.util.logging.Level.SEVERE, "No fue posible crear el EntityManager.", ex);
+            }
         }
         return em;
     }

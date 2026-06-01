@@ -3,9 +3,10 @@ package cr.ac.una.unaplanillam26.service;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import cr.ac.una.unaplanillam26.model.Empleado;
+import cr.ac.una.unaplanillam26.model.EmpleadoDto;
 import cr.ac.una.unaplanillam26.model.TipoPlanilla;
 import cr.ac.una.unaplanillam26.model.TiposPlanillaDto;
-import cr.ac.una.unaplanillam26.util.EntityManagerHelper;
 import cr.ac.una.unaplanillam26.util.Respuesta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -19,15 +20,22 @@ import jakarta.persistence.TypedQuery;
  */
 public class TipoPlanillaService {
 
-    private EntityManager em = EntityManagerHelper.getInstance().getManager();
+    private EntityManager em;
     private EntityTransaction et;
 
     public Respuesta getTipoPlanilla(Long id) {
         try {
-            TypedQuery<TipoPlanilla> qryTipoPlanilla = em.createNamedQuery("TipoPlanilla.findById", TipoPlanilla.class);
-            qryTipoPlanilla.setParameter("id", id);
-            TiposPlanillaDto TiposPlanillaDto = new TiposPlanillaDto(qryTipoPlanilla.getSingleResult());
-            return new Respuesta(true, "", "", "TipoPlanilla", TiposPlanillaDto); // Hacer el constructor para cada caso
+            TypedQuery<TipoPlanilla> qryTipoPlanilla = em.createNamedQuery("TipoPlanilla.findById",TipoPlanilla.class);
+            qryTipoPlanilla.setParameter("id",id);
+            
+            TipoPlanilla tipoPlanilla = (TipoPlanilla) qryTipoPlanilla.getSingleResult();
+            TiposPlanillaDto tipoPlanillaDto = new TiposPlanillaDto(tipoPlanilla);
+ 
+            for (Empleado empleado : tipoPlanilla.getEmpleados()) {
+                tipoPlanillaDto.getEmpleados().add(new EmpleadoDto(empleado));
+            }
+            
+            return new Respuesta(true, "", "", "TipoPlanilla", tipoPlanillaDto);
         } catch (NoResultException ex) {
             return new Respuesta(false, "No existe un TipoPlanilla con el id ingresado.", "getTipoPlanilla NoResultException");
         } catch (NonUniqueResultException ex) {
@@ -39,51 +47,69 @@ public class TipoPlanillaService {
         }
     }
 
-    public Respuesta guardarTipoPlanilla(TiposPlanillaDto TiposPlanillaDto) {
+    public Respuesta guardarTipoPlanilla(TiposPlanillaDto tipoPlanillaDto){
         try {
             et = em.getTransaction();
             et.begin();
+            TipoPlanilla tipoPlanilla;
             
-            TipoPlanilla TipoPlanilla;
-            if (TiposPlanillaDto.getId() != null && TiposPlanillaDto.getId() > 0) {
-                TipoPlanilla = em.find(TipoPlanilla.class, TiposPlanillaDto.getId());
-                if (TipoPlanilla == null) {
-                    return new Respuesta(false, "No se encontró un TipoPlanilla a modificar.", "guardarTipoPlanilla NoResultException");
+            if (tipoPlanillaDto.getId() != null && tipoPlanillaDto.getId() > 0) {
+                tipoPlanilla = em.find(TipoPlanilla.class, tipoPlanillaDto.getId());
+                
+                if(tipoPlanilla == null) {
+                    return new Respuesta(false, "No se encontró una planilla a modificar.", "guardarTipoPlanilla NoResultException");
                 }
-                TipoPlanilla.actualizar(TiposPlanillaDto);
-                TipoPlanilla = em.merge(TipoPlanilla);
+                
+                tipoPlanilla.actualizar(tipoPlanillaDto);
+                
+                for (EmpleadoDto empleadoEliminado : tipoPlanillaDto.getEmpleadosEliminados()) {
+                    tipoPlanilla.getEmpleados().removeIf((e) -> e.getId().equals(empleadoEliminado.getId()));
+                }
+      
+                if(!tipoPlanillaDto.getEmpleados().isEmpty()) {
+                    for (EmpleadoDto empleadoDto : tipoPlanillaDto.getEmpleados()) {
+                        if(empleadoDto.getModificado()){
+                            Empleado empleado = em.find(Empleado.class, empleadoDto.getId());
+                            tipoPlanilla.getEmpleados().add(empleado);
+                        }
+                    }
+                }
+                
+                tipoPlanilla = em.merge(tipoPlanilla);
             } else {
-                TipoPlanilla = new TipoPlanilla(TiposPlanillaDto);
-                em.persist(TipoPlanilla);
+                tipoPlanilla = new TipoPlanilla(tipoPlanillaDto);
+                em.persist(tipoPlanilla);
             }
             et.commit();
-            return new Respuesta(true, "", "", "TipoPlanilla", new TiposPlanillaDto(TipoPlanilla));
+            return new Respuesta(true,"","","TipoPlanilla",new TiposPlanillaDto(tipoPlanilla));
         } catch (Exception ex) {
-            Logger.getLogger(TipoPlanillaService.class.getName()).log(Level.SEVERE, "Error guardando el TipoPlanilla.", ex);
-            return new Respuesta(false, "Error guardando el TipoPlanilla.", "guardarTipoPlanilla " + ex.getMessage());
+            Logger.getLogger(TipoPlanillaService.class.getName()).log(Level.SEVERE, "Error guardando la planilla", ex);
+            return new Respuesta(false, "Error guardando la planilla.", "guardarTipoPlanilla" + ex.getMessage());
         }
     }
 
-    public Respuesta eliminarTipoPlanilla(Long id) {
+    public Respuesta eliminarTipoPlanilla (Long id){
         try {
             et = em.getTransaction();
             et.begin();
-            
-            TipoPlanilla TipoPlanilla;
+            TipoPlanilla tipoPlanilla;
+
             if (id != null && id > 0) {
-                TipoPlanilla = em.find(TipoPlanilla.class, id);
-                if (TipoPlanilla == null) {
-                    return new Respuesta(false, "No se encontró el TipoPlanilla a eliminar.", "eliminarTipoPlanilla NoResultException");
+                tipoPlanilla= em.find(TipoPlanilla.class,id);
+
+                if (tipoPlanilla==null) {
+                    return new Respuesta(false, "No se encontró la planilla a eliminar.", "eliminarTipoPlanilla NoResultException");
                 }
-                em.remove(TipoPlanilla);
+                em.remove(tipoPlanilla);
             } else {
-                return new Respuesta(false, "Favor consultar el TipoPlanilla a eliminar.", "");
+                return new Respuesta(false,"Favor consultar la planilla a eliminar.","");
             }
+
             et.commit();
-            return new Respuesta(true, "", "", "TipoPlanilla", new TiposPlanillaDto(TipoPlanilla));
+            return new Respuesta(true,"","");
         } catch (Exception ex) {
-            Logger.getLogger(TipoPlanillaService.class.getName()).log(Level.SEVERE, "Error guardando el TipoPlanilla.", ex);
-            return new Respuesta(false, "Error guardando el TipoPlanilla.", "guardarTipoPlanilla " + ex.getMessage());
+            Logger.getLogger(TipoPlanillaService.class.getName()).log(Level.SEVERE, "Error eliminando la planilla", ex);
+            return new Respuesta(false, "Error eliminando la planilla.", "eliminarTipoPlanilla" + ex.getMessage());
         }
     }
 

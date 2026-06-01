@@ -1,5 +1,7 @@
 package cr.ac.una.unaplanillam26.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,8 +22,9 @@ public class TiposPlanillaDto {
     private StringProperty descripcion;
     private StringProperty planillasXMes;
     private BooleanProperty activo;
-    private ObservableList<EmpleadoDto> empleados;
     private Long version;
+    private ObservableList<EmpleadoDto> empleados;
+    private List<EmpleadoDto> empleadosEliminados;
 
     // Declaraciones
     public TiposPlanillaDto() {
@@ -31,14 +34,16 @@ public class TiposPlanillaDto {
         this.planillasXMes = new SimpleStringProperty("");
         this.activo = new SimpleBooleanProperty(true);
         this.empleados = FXCollections.observableArrayList();
+        this.empleadosEliminados = new ArrayList<>();
     }
 
     public TiposPlanillaDto(TipoPlanilla tipoPlanilla) {
-        this.id = new SimpleStringProperty(tipoPlanilla.getId().toString());
-        this.codigo = new SimpleStringProperty(tipoPlanilla.getCodigo());
-        this.descripcion = new SimpleStringProperty(tipoPlanilla.getDescripcion());
-        this.planillasXMes = new SimpleStringProperty(tipoPlanilla.getPlaxmes().toString());
-        this.activo = new SimpleBooleanProperty(tipoPlanilla.getEstado().equals("A"));
+        this();
+        this.id = new SimpleStringProperty(tipoPlanilla.getId() != null ? tipoPlanilla.getId().toString() : "");
+        this.codigo = new SimpleStringProperty(tipoPlanilla.getCodigo() != null ? tipoPlanilla.getCodigo() : "");
+        this.descripcion = new SimpleStringProperty(tipoPlanilla.getDescripcion() != null ? tipoPlanilla.getDescripcion() : "");
+        this.planillasXMes = new SimpleStringProperty(tipoPlanilla.getPlaxmes() != null ? tipoPlanilla.getPlaxmes().toString() : "");
+        this.activo = new SimpleBooleanProperty("A".equals(tipoPlanilla.getEstado()));
         this.empleados = FXCollections.observableArrayList();
         this.version = tipoPlanilla.getVersion();
     }
@@ -53,6 +58,17 @@ public class TiposPlanillaDto {
 
     public ObservableList<EmpleadoDto> getEmpleados() {
         return empleados;
+    }
+    
+    public void setEmpleadosEliminados(List<EmpleadoDto> empleadosEliminados) {
+        this.empleados.clear();
+        if (empleados != null) {
+            this.empleadosEliminados = new ArrayList<>();
+        }
+    }
+    
+    public List<EmpleadoDto> getEmpleadosEliminados() {
+        return empleadosEliminados;
     }
 
     // Getters
@@ -151,5 +167,5 @@ public class TiposPlanillaDto {
     public void setVersion(Long version) {
         this.version = version;
     }
-
+    
 }

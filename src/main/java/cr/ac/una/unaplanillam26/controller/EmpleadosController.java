@@ -325,4 +325,5 @@ public class EmpleadosController extends Controller implements Initializable {
     @FXML
     private void onActionBtnBuscar(ActionEvent event) {
     }
+
 }

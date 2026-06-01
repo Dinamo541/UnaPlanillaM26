@@ -30,6 +30,7 @@ public class EmpleadoDto {
     private BooleanProperty administrator;
     private BooleanProperty activo;
     private Long version;
+    private Boolean modificado;
 
     public EmpleadoDto() {
         this.id = new SimpleStringProperty("");
@@ -45,6 +46,7 @@ public class EmpleadoDto {
         this.fechaSalida = new SimpleObjectProperty<>();
         this.activo = new SimpleBooleanProperty(true);
         this.administrator = new SimpleBooleanProperty(false);
+        this.modificado = false;
     }
 
     public EmpleadoDto(Empleado empleado) {
@@ -258,4 +260,13 @@ public class EmpleadoDto {
     public String toString() {
         return "EmpleadoDto{" + "id=" + id + ", nombre=" + nombre + ", primerApellido=" + primerApellido + ", cedula=" + cedula + '}';
     }
+
+    public Boolean getModificado() {
+        return modificado;
+    }
+
+    public void setModificado(Boolean modificado) {
+        this.modificado = modificado;
+    }
+    
 }
