@@ -176,9 +176,9 @@
     -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.15), 10, 0.7, 0, 1.5);
 }
 
-/* =========================
-ETIQUETAS
-========================= */
+/*=========================
+  ETIQUETAS
+  ========================= */
 
 .jfx-titulo-label {
     -fx-font-size: 24px;
@@ -197,6 +197,7 @@ ETIQUETAS
             #d37436 100%);
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
 }
+
 .jfx-titulo-tipos {
     -fx-font-size: 28px;
     -fx-padding: 1 5 1 5;

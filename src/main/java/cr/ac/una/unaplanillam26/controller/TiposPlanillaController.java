@@ -189,7 +189,7 @@ public class TiposPlanillaController extends Controller implements Initializable
         colEliminar.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue() != null));
         colEliminar.setCellFactory(cellData -> new ButtonCell());
         tbListaEmpleados.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 this.empleadoDto = newValue;
                 this.empleadoProperty.setValue(this.empleadoDto);
             }
