@@ -40,14 +40,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 /**
- * FXML Controller class
  *
  * @author Dominique
  */
 @SuppressWarnings("unused")
 public class TiposPlanillaController extends Controller implements Initializable {
 
-    // Variables FXML
+    // ----------------- FXML ----------------
     @FXML
     private VBox root;
     @FXML
@@ -77,9 +76,9 @@ public class TiposPlanillaController extends Controller implements Initializable
     @FXML
     private MFXTextField txtPlanillaXMes;
     @FXML
-    private MFXTextField txtNombreEmpleado;
-    @FXML
     private MFXTextField txtIdEmpleado;
+    @FXML
+    private MFXTextField txtNombreEmpleado;
     @FXML
     private MFXCheckbox chkActivo;
     @FXML
@@ -91,7 +90,7 @@ public class TiposPlanillaController extends Controller implements Initializable
     @FXML
     private TableColumn<EmpleadoDto, Boolean> colEliminar;
 
-    // Variables
+    // ----------------- Variables ----------------
     private EmpleadoDto empleadoDto;
     private TiposPlanillaDto tipoPlanillaDto;
 
@@ -100,7 +99,7 @@ public class TiposPlanillaController extends Controller implements Initializable
 
     private final List<Node> requeridos = new ArrayList<>();
 
-    // Declaraciones
+    // ----------------- Métodos de Inicialización ----------------
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.tipoPlanillaDto = new TiposPlanillaDto();
@@ -316,13 +315,6 @@ public class TiposPlanillaController extends Controller implements Initializable
                     invalidos += "," + ((MFXDatePicker) node).getFloatingText();
                 }
                 validos = false;
-            } else if (node instanceof MFXComboBox && ((MFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
-                if (validos) {
-                    invalidos += ((MFXComboBox) node).getFloatingText();
-                } else {
-                    invalidos += "," + ((MFXComboBox) node).getFloatingText();
-                }
-                validos = false;
             }
         }
         if (validos) {
@@ -421,7 +413,7 @@ public class TiposPlanillaController extends Controller implements Initializable
     }
 
     @FXML
-    private void onKeyPressedTxtIdEmpleadoPlanilla(KeyEvent event) {
+    private void onKeyPressedTxtIdEmpleado(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER
                 && txtIdEmpleado.getText() != null
                 && !txtIdEmpleado.getText().isBlank()) {

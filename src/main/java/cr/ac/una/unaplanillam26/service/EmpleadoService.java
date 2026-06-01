@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import cr.ac.una.unaplanillam26.model.Empleado;
 import cr.ac.una.unaplanillam26.model.EmpleadoDto;
+import cr.ac.una.unaplanillam26.util.EntityManagerHelper;
 import cr.ac.una.unaplanillam26.util.Respuesta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -18,11 +19,11 @@ import jakarta.persistence.TypedQuery;
  */
 public class EmpleadoService {
     
-    private EntityManager em;
+    private EntityManager em = EntityManagerHelper.getManager();
     private EntityTransaction et;
 
     public Respuesta getEmpleado(Long id){
-        try{
+        try {
             TypedQuery<Empleado> qryEmpleado=em.createNamedQuery("Empleado.findById", Empleado.class);
             qryEmpleado.setParameter("id", id);
 

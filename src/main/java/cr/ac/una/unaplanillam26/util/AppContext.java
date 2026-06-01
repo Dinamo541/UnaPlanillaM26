@@ -30,7 +30,7 @@ public class AppContext {
         return INSTANCE;
     }
     
-    private void cargarPropiedades(){
+    private void cargarPropiedades() {
         try {
             FileInputStream configFile;
             configFile = new FileInputStream("config/properties.ini");

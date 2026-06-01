@@ -7,6 +7,7 @@ import cr.ac.una.unaplanillam26.model.Empleado;
 import cr.ac.una.unaplanillam26.model.EmpleadoDto;
 import cr.ac.una.unaplanillam26.model.TipoPlanilla;
 import cr.ac.una.unaplanillam26.model.TiposPlanillaDto;
+import cr.ac.una.unaplanillam26.util.EntityManagerHelper;
 import cr.ac.una.unaplanillam26.util.Respuesta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -20,14 +21,14 @@ import jakarta.persistence.TypedQuery;
  */
 public class TipoPlanillaService {
 
-    private EntityManager em;
+    private EntityManager em = EntityManagerHelper.getManager(); 
     private EntityTransaction et;
 
     public Respuesta getTipoPlanilla(Long id) {
         try {
             TypedQuery<TipoPlanilla> qryTipoPlanilla = em.createNamedQuery("TipoPlanilla.findById",TipoPlanilla.class);
             qryTipoPlanilla.setParameter("id",id);
-            
+
             TipoPlanilla tipoPlanilla = (TipoPlanilla) qryTipoPlanilla.getSingleResult();
             TiposPlanillaDto tipoPlanillaDto = new TiposPlanillaDto(tipoPlanilla);
  

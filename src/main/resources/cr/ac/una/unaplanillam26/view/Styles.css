@@ -1,6 +1,7 @@
 /* =========================
    VARIABLES GLOBALES
    ========================= */
+
 * {
     -fx-base-color: #09b6bc;
     -fx-base-color-focus: #09b6bc;
@@ -12,7 +13,7 @@
     -fx-base-color-id: #00c853;
     -fx-color-primary-700: #095e8a;
     -mfx-main: -fx-base-color-focus;
-    -mfs-purple: -fx-base-color-focus;
+    -mfx-purple: -fx-base-color-focus;
 }
 
 .mfx-text-field {
@@ -40,8 +41,8 @@
     -fx-alignment: CENTER_LEFT;
 }
 
-.mfx-button .mxf-ripple-generator {
-    -mxf-ripple-color: white;
+.mfx-button .mfx-ripple-generator {
+    -mfx-ripple-color: white;
 }
 
 .button:hover {
