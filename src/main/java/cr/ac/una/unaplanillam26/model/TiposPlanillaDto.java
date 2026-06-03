@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
  * @author Dominique
  */
 @SuppressWarnings("unused")
@@ -35,6 +34,7 @@ public class TiposPlanillaDto {
         this.activo = new SimpleBooleanProperty(true);
         this.empleados = FXCollections.observableArrayList();
         this.empleadosEliminados = new ArrayList<>();
+        this.version = 1L;
     }
 
     public TiposPlanillaDto(TipoPlanilla tipoPlanilla) {

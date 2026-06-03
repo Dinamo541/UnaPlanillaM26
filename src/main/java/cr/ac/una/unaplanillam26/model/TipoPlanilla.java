@@ -26,7 +26,7 @@ import java.util.List;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoPlanilla.findAll", query = "SELECT t FROM TipoPlanilla t"),
-    @NamedQuery(name = "TipoPlanilla.findByTplaId", query = "SELECT t FROM TipoPlanilla t WHERE t.tplaId = :tplaId")})
+    @NamedQuery(name = "TipoPlanilla.findByTplaId", query = "SELECT t FROM TipoPlanilla t WHERE t.id = :tplaId")})
 public class TipoPlanilla implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -181,7 +181,7 @@ public class TipoPlanilla implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanillam26.model.TipoPlanilla[ tplaId=" + id + " ]";
+        return "cr.ac.una.unaplanillam26.model.TipoPlanilla[ id=" + id + " ]";
     }
 
 }

@@ -1,5 +1,7 @@
 package cr.ac.una.unaplanillam26.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +18,6 @@ import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.TypedQuery;
 
 /**
- *
  * @author Dominique
  */
 public class TipoPlanillaService {
@@ -26,8 +27,8 @@ public class TipoPlanillaService {
 
     public Respuesta getTipoPlanilla(Long id) {
         try {
-            TypedQuery<TipoPlanilla> qryTipoPlanilla = em.createNamedQuery("TipoPlanilla.findById",TipoPlanilla.class);
-            qryTipoPlanilla.setParameter("id",id);
+            TypedQuery<TipoPlanilla> qryTipoPlanilla = em.createNamedQuery("TipoPlanilla.findByTplaId",TipoPlanilla.class);
+            qryTipoPlanilla.setParameter("tplaId", id);
 
             TipoPlanilla tipoPlanilla = (TipoPlanilla) qryTipoPlanilla.getSingleResult();
             TiposPlanillaDto tipoPlanillaDto = new TiposPlanillaDto(tipoPlanilla);
@@ -78,6 +79,15 @@ public class TipoPlanillaService {
                 
                 tipoPlanilla = em.merge(tipoPlanilla);
             } else {
+                if (tipoPlanillaDto.getVersion() == null) {
+                    tipoPlanillaDto.setVersion(1L);
+                }
+                if (tipoPlanillaDto.getId() == null) {
+                    Number nuevoId = em.createQuery(
+                            "SELECT COALESCE(MAX(t.id), 0) + 1 FROM TipoPlanilla t", Number.class)
+                            .getSingleResult();
+                    tipoPlanillaDto.setId(nuevoId.longValue());
+                }
                 tipoPlanilla = new TipoPlanilla(tipoPlanillaDto);
                 em.persist(tipoPlanilla);
             }

@@ -93,6 +93,44 @@
    BOTONES
    ========================= */
 
+.jfx-btn-cancelar,
+.jfx-btn-cancelar:armed,
+.jfx-btn-cancelar:focused {
+    -fx-background-color: #d34336;
+
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+}
+
+.jfx-btn-cancelar:hover {
+    -fx-background-color: #c13f32;
+}
+
+.jfx-btn-cancelar:pressed {
+    -fx-background-color: #a52a1c;
+}
+
+.jfx-btn-guardar,
+.jfx-btn-guardar:armed,
+.jfx-btn-guardar:focused {
+    -fx-background-color: #00c853;
+
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.jfx-btn-guardar:hover {
+    -fx-background-color: #00b14f;
+}
+
+.jfx-btn-guardar:pressed {
+    -fx-background-color: #009e43;
+}
+
 .jfx-btn,
 .jfx-btn:armed,
 .jfx-btn:focused {
@@ -117,11 +155,36 @@
    PANELES
    ========================= */
 
+.jfx-card-login {
+    -fx-background-color:
+        #ffffffd3,
+        #FFFFFF2E;
+
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5, 5;
+
+    -fx-border-color: #FFFFFF66;
+    -fx-border-radius: 10px;
+
+    -fx-effect: dropshadow(gaussian, #00000026, 25, 0.2, 0, 8);
+}
+
 .jfx-top-card {
-    -fx-background-color: white;
+    -fx-background-color: 
+    #dbdbdb94,
+    #ffffffa8;
 
     -fx-border-color: #000000;
     -fx-border-width: 0 0 0.4 0;
+}
+
+.jfx-card-left {
+    -fx-background-color: 
+        #FFFFFF52,
+        #FFFFFF2E;
+
+    -fx-border-color: #797979;
+    -fx-border-width: 0 0 0 0.4;
 }
 
 .jfx-panel-fondo-tipos {
@@ -158,21 +221,9 @@
     -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.15), 20, 0.7, 0, 1.5);
 }
 
-.jfx-panel-fondo {
-    -fx-background-color: #2196f3;
-    -fx-opacity: 0.8;
-}
-
-.jfx-panel-fondo>VBox {
-    -fx-background-color: white;
-    -fx-border-color: #97a692;
-    -fx-border-width: 10px;
-}
-
 .jfx-contenedor-principal {
     -fx-background-color: white;
     -fx-background-radius: 4px;
-    -fx-padding: 25 15 15 15;
     -fx-effect: dropshadow(gaussian, rgb(0, 0, 0, 0.15), 10, 0.7, 0, 1.5);
 }
 
@@ -195,6 +246,19 @@
             #d3366e 0%,
             #d34336 50%,
             #d37436 100%);
+    -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
+}
+
+.jfx-titulo-empleados {
+    -fx-font-size: 28px;
+    -fx-padding: 1 5 1 5;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold;
+    
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%,
+        #09b6bc 0%,
+        #098bbe 50%,
+        #095e8a 100%);
     -fx-effect: dropshadow(three-pass-box, rgb(0, 0, 0, 0.6), 2, 0, 1, 2);
 }
 
@@ -264,6 +328,17 @@
 /* =========================
    ESPECIFICOS
    ========================= */
+
+.jfx-background-principal {
+    -fx-background-image: url("../resource/FondoInicioRojo.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+.jfx-text-field-login {
+    -fx-text-weight: bold;
+}
 
 #jfx-btn-nuevo {
     -fx-background-color: #2196f3;

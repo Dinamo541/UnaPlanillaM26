@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="655.0" prefWidth="972.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.PrincipalController">
+<BorderPane fx:id="root" prefHeight="655.0" prefWidth="972.0" styleClass="jfx-background-principal" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/25.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.unaplanillam26.controller.PrincipalController">
    <left>
-      <VBox prefWidth="154.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefWidth="154.0" spacing="10.0" styleClass="jfx-card-left" BorderPane.alignment="CENTER">
          <children>
             <StackPane prefHeight="84.0" prefWidth="102.0">
                <children>
@@ -28,7 +28,7 @@
                   </ImageView>
                </children>
             </StackPane>
-            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="145.0" spacing="4.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="145.0" spacing="4.0" styleClass="jfx-card-login">
                <children>
                   <ImageView fitHeight="48.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>

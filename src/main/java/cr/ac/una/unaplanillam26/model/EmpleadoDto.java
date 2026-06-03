@@ -11,7 +11,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
  * @author Dominique
  */
 public class EmpleadoDto {
@@ -27,7 +26,7 @@ public class EmpleadoDto {
     private StringProperty clave;
     private ObjectProperty<LocalDate> fechaIngreso;
     private ObjectProperty<LocalDate> fechaSalida;
-    private BooleanProperty administrator;
+    private BooleanProperty administrador;
     private BooleanProperty activo;
     private Long version;
     private Boolean modificado;
@@ -45,25 +44,25 @@ public class EmpleadoDto {
         this.fechaIngreso = new SimpleObjectProperty<>(LocalDate.now());
         this.fechaSalida = new SimpleObjectProperty<>();
         this.activo = new SimpleBooleanProperty(true);
-        this.administrator = new SimpleBooleanProperty(false);
+        this.administrador = new SimpleBooleanProperty(false);
         this.modificado = false;
     }
 
     public EmpleadoDto(Empleado empleado) {
         this();
         this.id.set(empleado.getId().toString());
-        this.nombre.set(empleado.getNombre());
-        this.primerApellido.set(empleado.getPrimerApellido());
-        this.segundoApellido.set(empleado.getSegundoApellido());
-        this.cedula.set(empleado.getCedula());
-        this.genero.set(empleado.getGenero());
-        this.correo.set(empleado.getCorreo());
-        this.usuario.set(empleado.getUsuario());
-        this.clave.set(empleado.getClave());
+        this.nombre.set(empleado.getNombre() == null ? "" : empleado.getNombre());
+        this.primerApellido.set(empleado.getPrimerApellido() == null ? "" : empleado.getPrimerApellido());
+        this.segundoApellido.set(empleado.getSegundoApellido() == null ? "" : empleado.getSegundoApellido());
+        this.cedula.set(empleado.getCedula() == null ? "" : empleado.getCedula());
+        this.genero.set(empleado.getGenero() == null ? "M" : empleado.getGenero());
+        this.correo.set(empleado.getCorreo() == null ? "" : empleado.getCorreo());
+        this.usuario.set(empleado.getUsuario() == null ? "" : empleado.getUsuario());
+        this.clave.set(empleado.getClave() == null ? "" : empleado.getClave());
         this.fechaIngreso.set(empleado.getFechaIngreso());
         this.fechaSalida.set(empleado.getFechaSalida());
-        this.administrator.set(empleado.getAdministrador().equals("S"));
-        this.activo.set(empleado.getEstado().equals("A"));
+        this.administrador.set("S".equals(empleado.getAdministrador()));
+        this.activo.set("A".equals(empleado.getEstado()));
         this.version = empleado.getVersion();
     }
 
@@ -83,7 +82,7 @@ public class EmpleadoDto {
     }
 
     public void setNombre(String nombre) {
-        this.nombre.set(nombre);
+        this.nombre.set(nombre == null ? "" : nombre);
     }
 
     public String getPrimerApellido() {
@@ -91,7 +90,7 @@ public class EmpleadoDto {
     }
 
     public void setPrimerApellido(String primerApellido) {
-        this.primerApellido.set(primerApellido);
+        this.primerApellido.set(primerApellido == null ? "" : primerApellido);
     }
 
     public String getSegundoApellido() {
@@ -99,7 +98,7 @@ public class EmpleadoDto {
     }
 
     public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido.set(segundoApellido);
+        this.segundoApellido.set(segundoApellido == null ? "" : segundoApellido);
     }
 
     public String getCedula() {
@@ -107,7 +106,7 @@ public class EmpleadoDto {
     }
 
     public void setCedula(String cedula) {
-        this.cedula.set(cedula);
+        this.cedula.set(cedula == null ? "" : cedula);
     }
 
     public String getGenero() {
@@ -115,7 +114,7 @@ public class EmpleadoDto {
     }
 
     public void setGenero(String genero) {
-        this.genero.set(genero);
+        this.genero.set(genero == null ? "M" : genero);
     }
 
     public String getCorreo() {
@@ -123,15 +122,15 @@ public class EmpleadoDto {
     }
 
     public void setCorreo(String correo) {
-        this.correo.set(correo);
+        this.correo.set(correo == null ? "" : correo);
     }
 
     public Boolean getAdministrador() {
-        return this.administrator.get();
+        return this.administrador.get();
     }
 
     public void setAdministrador(Boolean administrador) {
-        this.administrator.set(administrador);
+        this.administrador.set(administrador);
     }
 
     public String getUsuario() {
@@ -139,7 +138,7 @@ public class EmpleadoDto {
     }
 
     public void setUsuario(String usuario) {
-        this.usuario.set(usuario);
+        this.usuario.set(usuario == null ? "" : usuario);
     }
 
     public String getClave() {
@@ -147,7 +146,7 @@ public class EmpleadoDto {
     }
 
     public void setClave(String clave) {
-        this.clave.set(clave);
+        this.clave.set(clave == null ? "" : clave);
     }
 
     public LocalDate getFechaIngreso() {
@@ -223,7 +222,7 @@ public class EmpleadoDto {
     }
 
     public BooleanProperty getAdministratorProperty() {
-        return administrator;
+        return administrador;
     }
 
     public Long getVersion() {

@@ -11,6 +11,7 @@
       <property name="jakarta.persistence.jdbc.user" value="UNA"/>
       <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
       <property name="jakarta.persistence.jdbc.password" value="una"/>
+      <property name="eclipselink.logging.level" value="SEVERE"/>
     </properties>
   </persistence-unit>
 </persistence>

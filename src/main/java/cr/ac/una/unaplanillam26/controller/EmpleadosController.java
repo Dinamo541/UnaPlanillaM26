@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 import cr.ac.una.unaplanillam26.model.EmpleadoDto;
 import cr.ac.una.unaplanillam26.service.EmpleadoService;
+import cr.ac.una.unaplanillam26.util.AppContext;
 import cr.ac.una.unaplanillam26.util.BindingUtils;
+import cr.ac.una.unaplanillam26.util.FlowController;
 import cr.ac.una.unaplanillam26.util.Formato;
 import cr.ac.una.unaplanillam26.util.Mensaje;
 import cr.ac.una.unaplanillam26.util.Respuesta;
@@ -37,13 +39,13 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 /**
- * FXML Controller class
  *
  * @author Dominique
  */
 @SuppressWarnings("unused")
 public class EmpleadosController extends Controller implements Initializable {
 
+    // ----------------- FXML ----------------
     @FXML
     private VBox root;
     @FXML
@@ -85,13 +87,12 @@ public class EmpleadosController extends Controller implements Initializable {
     @FXML
     private MFXCheckbox chkActivo;
 
-    private EmpleadoDto empleado;
+    // ----------------- Variables ----------------
+    private EmpleadoDto empleadoDto;
     private final ObjectProperty<EmpleadoDto> empleadoProperty = new SimpleObjectProperty<>();
     private final List<Node> requeridos = new ArrayList<>();
 
-    /**
-     * Initializes the controller class.
-     */
+    // ----------------- Métodos de Inicialización ----------------
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         VBox.setVgrow(root, Priority.ALWAYS);
@@ -102,10 +103,11 @@ public class EmpleadosController extends Controller implements Initializable {
         txtNombre.delegateSetTextFormatter(Formato.getInstance().letrasFormat(30));
         txtPApellido.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
         txtSApellido.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
-        txtCedula.delegateSetTextFormatter(Formato.getInstance().cedulaFormat(40));
+        txtCorreo.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(30));
+        txtCedula.delegateSetTextFormatter(Formato.getInstance().cedulaFormat(20));
         txtUsuario.delegateSetTextFormatter(Formato.getInstance().letrasFormat(15));
         txtClave.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(8));
-        empleado = new EmpleadoDto();
+        empleadoDto = new EmpleadoDto();
         bindEmpleado();
         cargarValoresDefecto();
         indicarRequeridos();
@@ -115,6 +117,7 @@ public class EmpleadosController extends Controller implements Initializable {
     public void initialize() {
     }
 
+    // ---------------- Bindings ----------------
     private void bindEmpleado() {
         try {
             empleadoProperty.addListener((ov, oldVal, newVal) -> {
@@ -159,12 +162,12 @@ public class EmpleadosController extends Controller implements Initializable {
     }
 
     private void cargarValoresDefecto() {
-        this.empleado = new EmpleadoDto();
-        this.empleado.setActivo(Boolean.TRUE);
-        this.empleado.setAdministrador(Boolean.FALSE);
-        this.empleado.setFechaIngreso(LocalDate.now());
-        this.empleado.setGenero("M");
-        empleadoProperty.setValue(this.empleado);
+        this.empleadoDto = new EmpleadoDto();
+        this.empleadoDto.setActivo(Boolean.TRUE);
+        this.empleadoDto.setAdministrador(Boolean.FALSE);
+        this.empleadoDto.setFechaIngreso(LocalDate.now());
+        this.empleadoDto.setGenero("M");
+        empleadoProperty.setValue(this.empleadoDto);
         validarAdministrador();
         txtId.clear();
         txtId.requestFocus();
@@ -230,6 +233,25 @@ public class EmpleadosController extends Controller implements Initializable {
         }
     }
 
+    private void cargarEmpleado(Long id) {
+        try {
+            EmpleadoService empleadoService = new EmpleadoService(); 
+            Respuesta respuesta = empleadoService.getEmpleado(id);
+            if (respuesta.getEstado()) {
+                this.empleadoDto = (EmpleadoDto) respuesta.getResultado("Empleado");
+                this.empleadoProperty.set(this.empleadoDto);
+                validarAdministrador();
+                validarRequeridos();
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Buscar Empleado", getStage(), respuesta.getMensaje());
+            }
+        } catch (Exception ex) {
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Consultar Empleado",
+                    getStage(), "Ocurrió un error consultando el empleado.");
+        }
+    }
+
+    // ---------------- Métodos de Acción ----------------
     @FXML
     private void onActionChkAdministrador(ActionEvent event) {
         validarAdministrador();
@@ -246,23 +268,45 @@ public class EmpleadosController extends Controller implements Initializable {
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
         try {
-            String invalidos = validarRequeridos();
-            if (!invalidos.isBlank()) {
-                new Mensaje().showModal(Alert.AlertType.WARNING, "Guardar Empleado",
-                        getStage(), invalidos);
-            } else {
-                EmpleadoService empleadoService = new EmpleadoService(); 
-                Respuesta respuesta = empleadoService.guardarEmpleado(this.empleado);
-                if (respuesta.getEstado()) {
-                    this.empleado = (EmpleadoDto) respuesta.getResultado("Empleado");
-                    this.empleadoProperty.set(this.empleado);
-                    validarAdministrador();
-                    validarRequeridos();
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), "El empleado se guardor correctamente.");
+            if (this.empleadoDto.getId() == null) {
+                this.empleadoDto.setId(0l);
+                String invalidos = validarRequeridos();
+                if (!invalidos.isBlank()) {
+                    new Mensaje().showModal(Alert.AlertType.WARNING, "Guardar Empleado",
+                            getStage(), invalidos);
                 } else {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Empleado", getStage(), respuesta.getMensaje());
+                    EmpleadoService empleadoService = new EmpleadoService();
+                    Respuesta respuesta = empleadoService.guardarEmpleado(this.empleadoDto);
+                    if (respuesta.getEstado()) {
+                        this.empleadoDto = (EmpleadoDto) respuesta.getResultado("Empleado");
+                        this.empleadoProperty.set(this.empleadoDto);
+                        validarAdministrador();
+                        validarRequeridos();
+                        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), "El empleado se guardor correctamente.");
+                    } else {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Empleado", getStage(), respuesta.getMensaje());
+                    }
+                }
+            } else {
+                String invalidos = validarRequeridos();
+                if (!invalidos.isBlank()) {
+                    new Mensaje().showModal(Alert.AlertType.WARNING, "Guardar Empleado",
+                            getStage(), invalidos);
+                } else {
+                    EmpleadoService empleadoService = new EmpleadoService(); 
+                    Respuesta respuesta = empleadoService.guardarEmpleado(this.empleadoDto);
+                    if (respuesta.getEstado()) {
+                        this.empleadoDto = (EmpleadoDto) respuesta.getResultado("Empleado");
+                        this.empleadoProperty.set(this.empleadoDto);
+                        validarAdministrador();
+                        validarRequeridos();
+                        new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar Empleado", getStage(), "El empleado se guardor correctamente.");
+                    } else {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar Empleado", getStage(), respuesta.getMensaje());
+                    }
                 }
             }
+
         } catch (Exception ex) {
             Logger.getLogger(EmpleadosController.class.getName())
                     .log(Level.SEVERE, "Error guardando el empleado", ex);
@@ -274,22 +318,26 @@ public class EmpleadosController extends Controller implements Initializable {
     @FXML
     private void onActionBtnEliminar(ActionEvent event) {
         try {
-            if (this.empleado.getId() == null) {
+            if (this.empleadoDto.getId() == null) {
                 new Mensaje().showModal(Alert.AlertType.WARNING, "Eliminar Empleado",
                         getStage(), "Favor consultar el empleado a eliminar.");
-            } else {
-                EmpleadoService empleadoService = new EmpleadoService(); 
-                Respuesta respuesta = empleadoService.eliminarEmpleado(this.empleado.getId());
-                if (respuesta.getEstado()) {
-                    cargarValoresDefecto();
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar Empleado", getStage(), "El empleado se elimino correctamente.");
-                } else {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Empleado", getStage(), respuesta.getMensaje());
-                }
-                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar Empleado",
-                        getStage(), "El empleado se eliminó correctamente.");
+                return; 
             }
 
+            if (!new Mensaje().showConfirmation("Eliminar Empleado", getStage(),
+                    "¿Está seguro de que desea eliminar el registro?")) {
+                return;
+            }
+
+            EmpleadoService empleadoService = new EmpleadoService(); 
+            Respuesta respuesta = empleadoService.eliminarEmpleado(this.empleadoDto.getId());
+
+            if (respuesta.getEstado()) {
+                cargarValoresDefecto();
+                new Mensaje().showModal(Alert.AlertType.INFORMATION, "Eliminar Empleado", getStage(), "El empleado se elimino correctamente.");
+            } else {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Empleado", getStage(), respuesta.getMensaje());
+            }
         } catch (Exception ex) {
             Logger.getLogger(EmpleadosController.class.getName())
                     .log(Level.SEVERE, "Error eliminando el Empleado", ex);
@@ -306,28 +354,10 @@ public class EmpleadosController extends Controller implements Initializable {
         }
     }
 
-    private void cargarEmpleado(Long id) {
-        try {
-            EmpleadoService empleadoService = new EmpleadoService(); 
-            Respuesta respuesta = empleadoService.getEmpleado(id);
-            if (respuesta.getEstado()) {
-                this.empleado = (EmpleadoDto) respuesta.getResultado("Empleado");
-                this.empleadoProperty.set(this.empleado);
-                validarAdministrador();
-                validarRequeridos();
-            } else {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Buscar Empleado", getStage(), respuesta.getMensaje());
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(EmpleadosController.class.getName())
-                    .log(Level.SEVERE, "Error consultando el empleado", ex);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Consultar Empleado",
-                    getStage(), "Ocurrió un error consultando el empleado.");
-        }
-    }
-
     @FXML
     private void onActionBtnBuscar(ActionEvent event) {
+        AppContext.getInstance().set("Vista", "Empleados");
+        FlowController.getInstance().goViewInWindowModal("FiltradoEmpleadoView", getStage(), true);
     }
 
 }

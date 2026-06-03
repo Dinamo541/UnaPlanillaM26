@@ -57,7 +57,7 @@ public class FlowController {
         this.idioma = idioma;
     }
 
-    private FXMLLoader getLoader(String name) {
+    public FXMLLoader getLoader(String name) {
         FXMLLoader loader = loaders.get(name);
         if (loader == null) {
             synchronized (FlowController.class) {

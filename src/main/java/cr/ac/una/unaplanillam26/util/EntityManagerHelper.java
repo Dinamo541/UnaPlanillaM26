@@ -19,6 +19,9 @@ public class EntityManagerHelper {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     
+    private EntityManagerHelper() {
+    }
+
     public static EntityManagerHelper getInstance() {
 
         return SINGLENTON;

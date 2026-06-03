@@ -90,7 +90,7 @@ public class Empleado implements Serializable {
         this.segundoApellido = empleadoDto.getSegundoApellido();
         this.cedula = empleadoDto.getCedula();
         this.genero = empleadoDto.getGenero();
-        this.correo = empleadoDto.getCedula();
+        this.correo = empleadoDto.getCorreo();
         this.administrador = empleadoDto.getAdministrador() ? "S" : "N";
         this.usuario = empleadoDto.getUsuario();
         this.clave = empleadoDto.getClave();
