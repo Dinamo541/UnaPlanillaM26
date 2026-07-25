@@ -4,14 +4,8 @@ import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.List;
 import java.util.regex.Pattern;
 
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
-import io.github.palexdev.materialfx.controls.MFXPasswordField;
-import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.scene.Node;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextInputControl;
 
@@ -52,8 +46,8 @@ public class Formato {
         throw new CloneNotSupportedException();
     }
 
-    public TextFormatter twoDecimalFormat() {
-        TextFormatter numericFormat = new TextFormatter<>(c
+    public TextFormatter<Object> twoDecimalFormat() {
+        TextFormatter<Object> numericFormat = new TextFormatter<>(c
                 -> {
             if (c.getControlNewText().isEmpty()) {
                 return c;
@@ -84,8 +78,8 @@ public class Formato {
         return numericFormat;
     }
 
-    public TextFormatter integerFormat() {
-        TextFormatter numericFormat = new TextFormatter<>(c
+    public TextFormatter<Object> integerFormat() {
+        TextFormatter<Object> numericFormat = new TextFormatter<>(c
                 -> {
             if (c.getControlNewText().isEmpty()) {
                 return c;
@@ -101,7 +95,7 @@ public class Formato {
         return numericFormat;
     }
 
-    public TextFormatter cedulaFormat(Integer maxLength) {
+    public TextFormatter<String> cedulaFormat(Integer maxLength) {
         TextFormatter<String> cedulaFormat = new TextFormatter<>(c -> {
             if (c.getControlNewText().isEmpty()) {
                 return c;
@@ -124,7 +118,7 @@ public class Formato {
         return cedulaFormat;
     }
 
-    public TextFormatter letrasFormat(Integer maxLength) {
+    public TextFormatter<String> letrasFormat(Integer maxLength) {
         TextFormatter<String> letrasFormat = new TextFormatter<>(c -> {
             if (c.getControlNewText().isEmpty()) {
                 return c;
@@ -150,8 +144,8 @@ public class Formato {
         return letrasFormat;
     }
 
-    public TextFormatter maxLengthFormat(Integer length) {
-        TextFormatter maxLengthFormat = new TextFormatter<>(c
+    public TextFormatter<Object> maxLengthFormat(Integer length) {
+        TextFormatter<Object> maxLengthFormat = new TextFormatter<>(c
                 -> {
             if (c.getControlNewText().isEmpty()) {
                 return c;

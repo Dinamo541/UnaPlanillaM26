@@ -22,10 +22,10 @@ import javafx.scene.layout.HBox;
 
 public class FlowController {
 
-    private static FlowController INSTANCE = null;
-    private static Stage mainStage;
-    private static ResourceBundle idioma; // Hasta progra 3
-    private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
+    private static volatile FlowController INSTANCE = null;
+    private static volatile Stage mainStage;
+    private static volatile ResourceBundle idioma; // Hasta progra 3
+    private static volatile HashMap<String, FXMLLoader> loaders = new HashMap<>();
 
     private FlowController() {}
 
@@ -53,7 +53,7 @@ public class FlowController {
 
     public void InitializeFlow(Stage stage, ResourceBundle idioma) {
         getInstance();
-        this.mainStage = stage;
+        mainStage = stage;
         this.idioma = idioma;
     }
 
@@ -63,7 +63,7 @@ public class FlowController {
             synchronized (FlowController.class) {
                 if (loader == null) {
                     try {
-                        loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), this.idioma);
+                        loader = new FXMLLoader(App.class.getResource("view/" + name + ".fxml"), idioma);
                         loader.load();
                         loaders.put(name, loader);
                     } catch (Exception ex) {
@@ -78,10 +78,10 @@ public class FlowController {
 
     public void goMain() {
         try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/PrincipalView.fxml"), this.idioma)));
-            this.mainStage.getIcons().add(new Image("cr/ac/una/unaplanillam26/resource/LogoUNArojo.png"));
-            MFXThemeManager.addOn(this.mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
-            this.mainStage.show();
+            mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("view/PrincipalView.fxml"), idioma)));
+            mainStage.getIcons().add(new Image("cr/ac/una/unaplanillam26/resource/LogoUNArojo.png"));
+            MFXThemeManager.addOn(mainStage.getScene(), Themes.DEFAULT, Themes.LEGACY);
+            mainStage.show();
         } catch (IOException ex) {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
         }
@@ -102,7 +102,7 @@ public class FlowController {
         controller.initialize();
         Stage stage = controller.getStage();
         if (stage == null) {
-            stage = this.mainStage;
+            stage = mainStage;
             controller.setStage(stage);
         }
         switch (location) {
@@ -189,7 +189,7 @@ public class FlowController {
     }
     
     public void limpiarLoader(String view){
-        this.loaders.remove(view);
+        loaders.remove(view);
     }
 
     public static void setIdioma(ResourceBundle idioma) {
@@ -197,10 +197,11 @@ public class FlowController {
     }
     
     public void initialize() {
-        this.loaders.clear();
+        loaders.clear();
     }
 
     public void salir() {
-        this.mainStage.close();
+        mainStage.close();
     }
+
 }

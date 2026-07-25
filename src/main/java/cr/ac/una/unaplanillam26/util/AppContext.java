@@ -1,10 +1,6 @@
 package cr.ac.una.unaplanillam26.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Properties;
-
 
 public class AppContext {
 
@@ -28,18 +24,6 @@ public class AppContext {
             createInstance();
         }
         return INSTANCE;
-    }
-    
-    private void cargarPropiedades() {
-        try {
-            FileInputStream configFile;
-            configFile = new FileInputStream("config/properties.ini");
-            Properties appProperties = new Properties();
-            appProperties.load(configFile);
-            configFile.close();
-        } catch (IOException io) {
-            System.out.println("Archivo de configuración no encontrado.");
-        }
     }
 
     @Override
