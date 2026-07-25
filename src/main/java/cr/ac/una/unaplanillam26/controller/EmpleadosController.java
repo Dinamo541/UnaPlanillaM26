@@ -42,7 +42,6 @@ import javafx.scene.layout.VBox;
  *
  * @author Dominique
  */
-@SuppressWarnings("unused")
 public class EmpleadosController extends Controller implements Initializable {
 
     // ----------------- FXML ----------------
@@ -217,11 +216,11 @@ public class EmpleadosController extends Controller implements Initializable {
                     invalidos += "," + ((MFXDatePicker) node).getFloatingText();
                 }
                 validos = false;
-            } else if (node instanceof MFXComboBox && ((MFXComboBox) node).getSelectionModel().getSelectedIndex() < 0) {
+            } else if (node instanceof MFXComboBox && ((MFXComboBox<?>) node).getSelectionModel().getSelectedIndex() < 0) {
                 if (validos) {
-                    invalidos += ((MFXComboBox) node).getFloatingText();
+                    invalidos += ((MFXComboBox<?>) node).getFloatingText();
                 } else {
-                    invalidos += "," + ((MFXComboBox) node).getFloatingText();
+                    invalidos += "," + ((MFXComboBox<?>) node).getFloatingText();
                 }
                 validos = false;
             }

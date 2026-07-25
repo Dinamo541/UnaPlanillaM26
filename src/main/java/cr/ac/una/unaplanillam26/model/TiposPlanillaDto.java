@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 /**
  * @author Dominique
  */
-@SuppressWarnings("unused")
 public class TiposPlanillaDto {
 
     // Variables

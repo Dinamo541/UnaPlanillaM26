@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "mvn clean javafx:run",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$maven",
+            "detail": "Compila y ejecuta la aplicación JavaFX (mvn clean javafx:run)"
+        },
+        {
+            "label": "run-debug",
+            "type": "shell",
+            "command": "mvn clean javafx:run@debug",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^.*$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*Listening for transport dt_socket.*",
+                    "endsPattern": ".*Listening for transport dt_socket.*"
+                }
+            },
+            "detail": "Ejecuta la app y espera que el depurador se conecte al puerto 8000"
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "mvn clean compile",
+            "problemMatcher": "$maven",
+            "detail": "Compila el proyecto (mvn clean compile)"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "mvn clean",
+            "problemMatcher": [],
+            "detail": "Limpia los artefactos de compilación (mvn clean)"
+        },
+        {
+            "label": "package",
+            "type": "shell",
+            "command": "mvn clean package",
+            "problemMatcher": "$maven",
+            "detail": "Empaqueta el proyecto (mvn clean package)"
+        }
+    ]
+}

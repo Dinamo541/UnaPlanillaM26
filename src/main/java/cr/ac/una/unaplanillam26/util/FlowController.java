@@ -54,7 +54,7 @@ public class FlowController {
     public void InitializeFlow(Stage stage, ResourceBundle idioma) {
         getInstance();
         mainStage = stage;
-        this.idioma = idioma;
+        FlowController.idioma = idioma;
     }
 
     public FXMLLoader getLoader(String name) {

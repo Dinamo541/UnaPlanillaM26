@@ -1,5 +1,15 @@
 {
     "cSpell.words": [
         "actualizar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "maven.executable.preferMavenWrapper": false,
+    "files.exclude": {
+        "**/target": true
+    },
+    "[java]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    }
 }

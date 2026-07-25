@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Ejecutar UnaPlanillaM26 (JavaFX)",
+            "request": "launch",
+            "mainClass": "cr.ac.una.unaplanillam26.App",
+            "projectName": "UnaPlanillaM26",
+            "vmArgs": "--enable-native-access=javafx.graphics"
+        },
+        {
+            "type": "java",
+            "name": "Depurar UnaPlanillaM26 (adjuntar)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000,
+            "projectName": "UnaPlanillaM26",
+            "preLaunchTask": "run-debug"
+        }
+    ]
+}
