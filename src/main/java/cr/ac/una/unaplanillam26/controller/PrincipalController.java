@@ -24,6 +24,8 @@ public class PrincipalController extends Controller implements Initializable {
     @FXML
     private Label lblUserNombre;
 
+    private String currentView = "EmpleadosView";
+
     // ----------------- Métodos de Inicialización ----------------
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,11 +48,19 @@ public class PrincipalController extends Controller implements Initializable {
     // ---------------- Métodos de Acción ----------------
     @FXML
     private void onActionBtnEmpleados(ActionEvent event) {
+        if (currentView.equals("EmpleadosView")) {
+            return;
+        }
+        currentView = "EmpleadosView";
         FlowController.getInstance().goView("EmpleadosView", "Center", null);
     }
 
     @FXML
     private void onActionBtnTiposPlanilla(ActionEvent event) {
+        if (currentView.equals("TiposPlanillaView")) {
+            return;
+        }
+        currentView = "TiposPlanillaView";
         FlowController.getInstance().goView("TiposPlanillaView", "Center", null);
     }
 

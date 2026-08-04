@@ -32,9 +32,9 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "mvn clean compile",
+            "command": "mvn compile dependency:copy-dependencies '-DincludeGroupIds=org.openjfx' '-DincludeClassifiers=win' '-DoutputDirectory=target/javafx-modules'",
             "problemMatcher": "$maven",
-            "detail": "Compila el proyecto (mvn clean compile)"
+            "detail": "Compila y copia los módulos de JavaFX a target/javafx-modules (necesario para F5)"
         },
         {
             "label": "clean",

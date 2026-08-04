@@ -7,7 +7,8 @@
             "request": "launch",
             "mainClass": "cr.ac.una.unaplanillam26.App",
             "projectName": "UnaPlanillaM26",
-            "vmArgs": "--enable-native-access=javafx.graphics"
+            "preLaunchTask": "compile",
+            "vmArgs": "--module-path ${workspaceFolder}/target/javafx-modules --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
         },
         {
             "type": "java",
